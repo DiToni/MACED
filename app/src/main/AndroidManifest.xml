@@ -16,7 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScreenLogin"></activity>
+        <activity android:name=".ScreenLogin" />
+        <activity
+            android:name=".Calendar"
+            android:label="@string/title_activity_monatuebersicht" />
+        <activity
+            android:name=".BurgerMenu"
+            android:label="@string/title_activity_burger_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".OnboardingSite1"
+            android:label="@string/title_activity_onboarding_site1"></activity>
     </application>
 
 </manifest>
