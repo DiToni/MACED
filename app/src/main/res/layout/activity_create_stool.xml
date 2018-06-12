@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".create_stool">
+
+    <TextView
+        android:id="@+id/stool-skala"
+        android:layout_width="fill_parent"
+        android:layout_height="19dp"
+        android:layout_marginEnd="200dp"
+        android:text="Bristol-Stool-Scale"
+        android:title="Bristol-Stuhlformen-Skala"
+        app:layout_constrainedHeight="true"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="41dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        android:onClick="onClickButtonQuestionMark"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/stool-skala"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/helpcircle" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="39dp"
+        android:max="7"
+        android:progress="0"
+        app:layout_constraintBottom_toTopOf="@+id/time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stool-skala" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="HH-MM"
+        android:inputType="time"
+        app:layout_constraintBottom_toTopOf="@+id/stool-image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="fill_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="100dp"
+        android:text="Time"
+        android:title="Time"
+        app:layout_constrainedHeight="true"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/stool-image"
+        android:layout_width="305dp"
+        android:layout_height="146dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/camera-button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_max="100dp"
+        app:layout_constraintHeight_min="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintWidth_max="100dp"
+        app:layout_constraintWidth_min="150dp"
+        app:srcCompat="@drawable/loginlogo" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/camera-button"
+        android:layout_width="61dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="161dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
+        android:onClick="onClickButtonCamera"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stool-image"
+        app:srcCompat="@drawable/camera" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="191dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="94dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:onClick="onClickButtonWeiter"
+        android:text="Weiter"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera-button" />
+
+
+
+
+</android.support.constraint.ConstraintLayout>
+
