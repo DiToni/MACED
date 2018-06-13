@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText"
         app:layout_constraintWidth_max="100dp"
         app:layout_constraintWidth_min="150dp"
-        app:srcCompat="@drawable/loginlogo" />
+        app:srcCompat="@mipmap/ic_logo_round_bg_white" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/camera-button"
