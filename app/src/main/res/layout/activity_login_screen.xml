@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="59dp"
-        app:srcCompat="@drawable/loginlogo"
+        app:srcCompat="@mipmap/ic_logo_round_bg_white"
         android:contentDescription="@string/app_name"/>
 
     <EditText
