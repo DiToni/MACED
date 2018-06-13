@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 /**
  * Fragment class for each nav menu item
  */
-public class SchmerzFragment extends Fragment {
+public class PainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.schmerz_list, container, false);
+        return inflater.inflate(R.layout.pain_list, container, false);
     }
 }

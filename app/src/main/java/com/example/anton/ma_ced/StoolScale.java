@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class stool_scale extends AppCompatActivity {
+public class StoolScale extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,7 +13,7 @@ public class stool_scale extends AppCompatActivity {
     }
 
     public void onBackPressed(){
-        Intent intent = new Intent(getApplicationContext(), create_stool.class);
+        Intent intent = new Intent(getApplicationContext(), CreateStool.class);
         startActivity(intent);
     }
 }

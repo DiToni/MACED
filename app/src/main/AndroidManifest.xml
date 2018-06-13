@@ -51,7 +51,11 @@
             android:label="@string/title_activity_toilet_finder" />
         <activity android:name=".Settings" />
         <activity android:name=".SecurityScene" />
-        <activity android:name=".ProtectionMechanism"></activity>
+        <activity android:name=".ProtectionMechanism" />
+        <activity android:name=".CreateStool" />
+        <activity android:name=".StoolList" />
+        <activity android:name=".StoolScale" />
+        <activity android:name=".TimePicker"></activity>
     </application>
 
 </manifest>

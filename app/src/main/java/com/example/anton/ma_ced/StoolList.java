@@ -1,5 +1,6 @@
 package com.example.anton.ma_ced;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
@@ -10,8 +11,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
-public class activity_stool_list extends AppCompatActivity {
+public class StoolList extends AppCompatActivity {
     private static final String SELECTED_ITEM = "arg_selected_item";
 
     private BottomNavigationView mBottomNav;
@@ -63,10 +65,10 @@ public class activity_stool_list extends AppCompatActivity {
         // init corresponding fragment
         switch (item.getItemId()) {
             case R.id.stuhl:
-                frag = MenuFragment.newInstance("Stuhl", 123456, new StuhlFragment());
+                frag = MenuFragment.newInstance("Stuhl", 123456, new StoolFragment());
                 break;
             case R.id.schmerzen:
-                frag = MenuFragment.newInstance("Schmerzen", 000000, new SchmerzFragment());
+                frag = MenuFragment.newInstance("Schmerzen", 000000, new PainFragment());
                 break;
             case R.id.symptome:
                 frag = MenuFragment.newInstance("Symptome", 654321, new SymptomFragment());
@@ -101,5 +103,25 @@ public class activity_stool_list extends AppCompatActivity {
 
     private int getColorFromRes(@ColorRes int resId) {
         return ContextCompat.getColor(this, resId);
+    }
+
+    public void onClickButtonPlus(final View openView){
+        Intent intent;
+        switch(mSelectedItem){
+            case R.id.stuhl:
+                intent = new Intent(getApplicationContext(), CreateStool.class);
+                startActivity(intent);
+                break;
+            case R.id.schmerzen:
+                intent = new Intent(getApplicationContext(), SplashScreen.class);
+                startActivity(intent);
+                break;
+            case R.id.symptome:
+                intent = new Intent(getApplicationContext(), Calendar.class);
+                startActivity(intent);
+                break;
+
+
+        }
     }
 }
