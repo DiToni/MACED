@@ -32,10 +32,10 @@ public class CreateStool extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickButtonTimePicker (final View openView){
+    /*public void onClickButtonTimePicker (final View openView){
         Intent intent = new Intent(getApplicationContext(), TimePicker.class);
         startActivity(intent);
-    }
+    }*/
 
     public void onBackPressed(){
         Intent intent = new Intent(getApplicationContext(), StoolList.class);

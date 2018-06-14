@@ -55,7 +55,7 @@
         <activity android:name=".CreateStool" />
         <activity android:name=".StoolList" />
         <activity android:name=".StoolScale" />
-        <activity android:name=".TimePicker"></activity>
+        <!--<activity android:name=".TimePicker"></activity>-->
     </application>
 
 </manifest>
