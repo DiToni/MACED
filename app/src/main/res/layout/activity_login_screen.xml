@@ -27,7 +27,7 @@
         android:background="#aa1a1a"
         android:drawableStart="@drawable/ic_action_password"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/Passwort_String"
         android:inputType="textPassword" />
 
     <Button
