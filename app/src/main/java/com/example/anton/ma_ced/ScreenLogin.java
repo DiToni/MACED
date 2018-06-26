@@ -14,7 +14,7 @@ public class ScreenLogin extends AppCompatActivity {
     }
 
     public void onClickAnmeldeButton(final View openView){
-        Intent intent = new Intent(getApplicationContext(),BurgerMenu.class);
+        Intent intent = new Intent(getApplicationContext(),Calendar.class);
         startActivity(intent);
     }
 }

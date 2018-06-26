@@ -5,39 +5,24 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_pdf_export"
+            android:icon="@drawable/ic_picture_as_pdf_black_24dp"
+            android:title="PDF-Export" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_toilet_finder"
+            android:icon="@drawable/ic_location_searching_black_24dp"
+            android:title="Toilettenfinder" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_gamemification"
+            android:icon="@drawable/ic_videogame_asset_black_24dp"
+            android:title="Spieletools" />
         <item
-            android:id="@+id/settings"
+            android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Settings" />
+            android:title="Einstellungen" />
         <item
-
-            android:id="@+id/toiletFinder"
-            android:title="Toilet finder"
-            />
+            android:id="@+id/nav_log_out"
+            android:icon="@drawable/ic_power_settings_new_black_24dp"
+            android:title="Abmelden" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
-
 </menu>

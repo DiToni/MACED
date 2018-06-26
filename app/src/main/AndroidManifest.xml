@@ -11,9 +11,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo_round_bg_red"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_logo_round_bg_red"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SplashScreen">
@@ -51,7 +51,11 @@
             android:label="@string/title_activity_toilet_finder" />
         <activity android:name=".Settings" />
         <activity android:name=".SecurityScene" />
-        <activity android:name=".ProtectionMechanism"></activity>
+        <activity android:name=".ProtectionMechanism" />
+        <activity android:name=".CreateStool" />
+        <activity android:name=".StoolList" />
+        <activity android:name=".StoolScale" />
+        <!--<activity android:name=".TimePicker"></activity>-->
     </application>
 
 </manifest>

@@ -81,22 +81,22 @@ public class BurgerMenu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_pdf_export) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.settings) {
-            Intent intent = new Intent(getApplicationContext(),Settings.class);
-            startActivity(intent);
-        } else if (id == R.id.toiletFinder) {
+        } else if (id == R.id.nav_toilet_finder) {
             Intent intent = new Intent(getApplicationContext(), ToiletFinder.class);
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_gamemification) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(getApplicationContext(),Settings.class);
+            startActivity(intent);
+        } else if(id == R.id.nav_log_out) {
+            //back stack bis zum login screen lereren; testen ob das funktioniert:
+            Intent intent = new Intent(this, ScreenLogin.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);//FLAG_ACTIVITY_NEW_TASK: if used to start the root activity of a task, it will bring any currently running instance of that task to the foreground, and then clear it to its root state.
+            startActivity(intent);
+            finish(); // call this to finish the current activity
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -20,7 +20,7 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_toilet_finder);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.toiletFinder);
+                .findFragmentById(R.id.nav_toilet_finder);
         mapFragment.getMapAsync(this);
     }
 
