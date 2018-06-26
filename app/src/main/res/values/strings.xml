@@ -3,7 +3,7 @@
     <string name="title_activity_burger_menu">BurgerMenu</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Vorname Nachname</string>
+    <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -88,4 +88,69 @@
     <string name="App_Schutz">App_Schutz</string>
     <string name="Pin_String">Pin</string>
     <string name="Passwort_String">Passwort</string>
+
+    <string name="schwach">schwach</string>
+    <string name="keine">keine</string>
+    <string name="mittel">mittel</string>
+    <string name="stark">stark</string>
+    <string name="sehr_stark">sehr stark</string>
+    <string name="Lokalisation">Lokalisation</string>
+    <string name="schmerzskala">Schmerzskala</string>
+    <string name="art_des_schmerzes">Art des Schmerzes</string>
+    <string name="zeitpunkt_des_schmerzauftritts">Zeitpunkt des Schmerzauftritts</string>
+    <string name="schmerzzeitraum">Schmerzzeitraum</string>
+    <string name="nahrungsaufnahme_vor_dem_schmerzeintritts">Nahrungsaufnahme vor dem Schmerzeintritts</string>
+    <string name="ok">OK</string>
+    <string name="nahrung">Nahrung</string>
+    <string name="symptom">Symptom</string>
+    <string name="symptomhinzufuegen">neues Symptom hinzufügen</string>
+    <string name="zeitpunktAuftritt">Zeitpunkt des Auftritts</string>
+    <string name="zeitraum">Zeitraum</string>
+    <string name="beschreibung">Beschreibung</string>
+    <string name="neuesSymptom">neues Symptom</string>
+    <string name="hinzufuegen">hinzufügen</string>
+    <string name="hinweisPDF">Hier können Sie die Schmerzskala exportieren</string>
+    <string name="letzteWoche">letzte Woche</string>
+    <string name="letzterMonat">letzten Monat</string>
+    <string name="eigenerZeitraum">eigener Zeitraum</string>
+    <string name="von">von:</string>
+    <string name="bis">bis:</string>
+    <string name="exportieren">exportieren</string>
+
+    <string-array name="lokalisationen">
+        <item>oben rechts</item>
+        <item>oben mittig</item>
+        <item>oben links</item>
+        <item>mittig</item>
+        <item>unten rechts</item>
+        <item>unten links</item>
+    </string-array>
+
+    <string-array name="schmerzart">
+        <item>stechend</item>
+        <item>dumpf</item>
+        <item>bohrend</item>
+        <item>krampgartig</item>
+        <item>eher diffus</item>
+    </string-array>
+
+    <string-array name="zeitraum">
+        <item>kurz</item>
+        <item>1-2Stunden</item>
+        <item>>2 Stunden</item>
+        <item>ganztägig</item>
+    </string-array>
+
+    <string-array name="symptome">
+        <item>Gelenkschmerzen</item>
+        <item>Rückenschmerzen</item>
+        <item>Augenentzündung</item>
+        <item>Müdigkeit</item>
+        <item>Hautreizung</item>
+        <item>Fieber</item>
+        <item>Appetitlosigkeit</item>
+        <item>Gewichtsverlust</item>
+        <item>Aphthe</item>
+    </string-array>
+
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".create_stool">
+    tools:context=".CreateStool">
 
     <TextView
         android:id="@+id/stool-skala"
@@ -46,25 +46,28 @@
         android:layout_marginBottom="39dp"
         android:max="7"
         android:progress="0"
-        app:layout_constraintBottom_toTopOf="@+id/time"
+        app:layout_constraintBottom_toTopOf="@+id/timeLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stool-skala" />
+        app:layout_constraintTop_toBottomOf="@+id/stool-skala"
+        android:focusedByDefault="true"
+        />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/timeEditText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
         android:ems="10"
         android:hint="HH-MM"
         android:inputType="time"
         app:layout_constraintBottom_toTopOf="@+id/stool-image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time" />
+        app:layout_constraintTop_toBottomOf="@+id/timeLabel" />
 
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/timeLabel"
         android:layout_width="fill_parent"
         android:layout_height="36dp"
         android:layout_marginTop="100dp"
@@ -72,7 +75,7 @@
         android:title="Time"
         app:layout_constrainedHeight="true"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/timeEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,7 +94,7 @@
         app:layout_constraintHeight_max="100dp"
         app:layout_constraintHeight_min="100dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/timeEditText"
         app:layout_constraintWidth_max="100dp"
         app:layout_constraintWidth_min="150dp"
         app:srcCompat="@mipmap/ic_logo_round_bg_white" />
@@ -129,7 +132,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camera-button" />
 
-
+    <ImageButton
+        android:id="@+id/timePickerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="343dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:background="#aa1a1a"
+        android:onClick="onClickButtonTimePicker"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/timeEditText"
+        app:layout_constraintTop_toBottomOf="@+id/timeLabel"
+        app:srcCompat="@android:drawable/arrow_down_float" />
 
 
 </android.support.constraint.ConstraintLayout>

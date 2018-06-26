@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-public class create_stool extends AppCompatActivity {
+public class CreateStool extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +19,7 @@ public class create_stool extends AppCompatActivity {
     }
 
     public void onClickButtonWeiter(final View openView) {
-        Intent intent = new Intent(getApplicationContext(), activity_stool_list.class);
+        Intent intent = new Intent(getApplicationContext(), StoolList.class);
         startActivity(intent);
     }
 
@@ -26,12 +28,17 @@ public class create_stool extends AppCompatActivity {
     }
 
     public void onClickButtonQuestionMark(final View openView){
-        Intent intent = new Intent(getApplicationContext(), stool_scale.class);
+        Intent intent = new Intent(getApplicationContext(), StoolScale.class);
         startActivity(intent);
     }
 
+    /*public void onClickButtonTimePicker (final View openView){
+        Intent intent = new Intent(getApplicationContext(), TimePicker.class);
+        startActivity(intent);
+    }*/
+
     public void onBackPressed(){
-        Intent intent = new Intent(getApplicationContext(), activity_stool_list.class);
+        Intent intent = new Intent(getApplicationContext(), StoolList.class);
         startActivity(intent);
     }
 
@@ -45,10 +52,20 @@ public class create_stool extends AppCompatActivity {
     }
 
     public void textFeldLesen(){
-        EditText et = (EditText) findViewById(R.id.editText);
+        EditText et = (EditText) findViewById(R.id.timeEditText);
         String s = et.getText().toString();
         Log.i("String", s);
     }
+
+    /*public String getTime(){
+        int hour = tp.getHour();
+        int min = tp.getMinute();
+        return hour + ":" + min;
+    }*/
+
+
+
+
 
 
 
