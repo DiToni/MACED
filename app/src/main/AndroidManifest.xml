@@ -52,10 +52,10 @@
         <activity android:name=".Settings" />
         <activity android:name=".SecurityScene" />
         <activity android:name=".ProtectionMechanism" />
-        <activity android:name=".SchmerzDokumentation" />
-        <activity android:name=".SymptomeDokumentation" />
-        <activity android:name=".SymptomHinzufuegen" />
-        <activity android:name=".PDFexportieren"/>
+        <activity android:name=".SchmerzDokumentation"  android:label="@string/title_activity_schmerzdokumentation"/>
+        <activity android:name=".SymptomeDokumentation" android:label="@string/title_activity_symptomedokumentation" />
+        <activity android:name=".SymptomHinzufuegen" android:label="@string/title_activity_symptomhinzufuegen"/>
+        <activity android:name=".PDFexportieren" android:label="@string/title_activity_pdfexportieren"/>
         <activity android:name=".ProtectionMechanism"/>
         <activity android:name=".CreateStool" />
         <activity android:name=".StoolList" />
