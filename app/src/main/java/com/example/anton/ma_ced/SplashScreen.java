@@ -6,7 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 public class SplashScreen extends AppCompatActivity {
-
+    //SecurityScene s2 = new SecurityScene();
+    //public boolean abfrage = true;
+    //Switch switch2 = (Switch) s2.findViewById(R.id.switch2);
+    //private boolean abfrage2;
+/*
+    public SplashScreen() {
+        abfrage2 = switch2.getShowText();
+    }
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,10 +23,18 @@ public class SplashScreen extends AppCompatActivity {
         Thread myThread = new Thread(){
             @Override
             public void run() {
+
                 try {
                     sleep(3000);
-                    Intent intent = new Intent(getApplicationContext(),ScreenLogin.class);
-                    startActivity(intent);
+
+                //    if (abfrage2 ) {
+                        Intent intent = new Intent(getApplicationContext(), ScreenLogin.class);
+                        startActivity(intent);
+                  /*  } else {
+                        Intent intent = new Intent(getApplicationContext(), Calendar.class);
+                        startActivity(intent);
+                    }
+                    */
                     finish();
 
                 } catch (InterruptedException e) {

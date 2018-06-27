@@ -43,23 +43,20 @@
         android:layout_height="47dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="268dp"
+        android:layout_marginBottom="272dp"
         android:layout_marginEnd="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:checked="false"
         android:showText="true"
         android:splitTrack="false"
-        android:text="App Schutz"
+        android:text="@string/Is_App_Schutz"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:thumbTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeBtn"
-        app:layout_constraintVertical_bias="0.386"
-        tools:checked="false" />
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 

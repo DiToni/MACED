@@ -90,6 +90,7 @@
     <string name="Schutzmechanismus">Schutzmechanismus</string>
     <string name="Pin_Passwort">Pin / Passwort ändern</string>
     <string name="App_Schutz">App_Schutz</string>
+    <string name="Is_App_Schutz">0</string>
     <string name="Pin_String">Pin</string>
     <string name="Passwort_String">Passwort</string>
 
