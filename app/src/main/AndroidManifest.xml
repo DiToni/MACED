@@ -25,9 +25,6 @@
         </activity>
         <activity android:name=".ScreenLogin" />
         <activity
-            android:name=".Calendar"
-            android:label="@string/title_activity_monatuebersicht" />
-        <activity
             android:name=".BurgerMenu"
             android:label="@string/title_activity_burger_menu"
             android:theme="@style/AppTheme.NoActionBar" />

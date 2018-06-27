@@ -15,7 +15,7 @@ public class Settings extends AppCompatActivity {
 
 
 
-        Button sicherheitsebene2 = (Button)findViewById(R.id.sicherheitbtn);
+        Button sicherheitsebene2 = (Button)findViewById(R.id.sicherheitBtn);
         sicherheitsebene2.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -27,7 +27,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        Button sicherheitsebene = (Button)findViewById(R.id.sicherheitbtn);
+        Button sicherheitsebene = (Button)findViewById(R.id.sicherheitBtn);
         sicherheitsebene.setOnClickListener(new View.OnClickListener() {
 
             @Override

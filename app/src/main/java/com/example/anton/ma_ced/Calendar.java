@@ -1,27 +1,27 @@
 package com.example.anton.ma_ced;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.CalendarView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class Calendar extends AppCompatActivity {
+
+public class Calendar extends android.support.v4.app.Fragment {
+
+    public Calendar() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
 
-        CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
-        calendarView.setFirstDayOfWeek(2);
+    }
 
-        // perform setOnDateChangeListener event on CalendarView
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                Intent intent = new Intent(getApplicationContext(),SplashScreen.class);//SplashScreen.class durch Stuhldoku-listview von kai ersetzen
-                startActivity(intent);
-            }
-        });
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_calendar, container, false);
     }
 }
