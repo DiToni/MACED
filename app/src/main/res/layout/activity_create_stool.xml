@@ -36,7 +36,7 @@
         app:layout_constraintStart_toEndOf="@+id/stool-skala"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/helpcircle" />
+        app:srcCompat="@mipmap/ic_logo_info_black" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -113,7 +113,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stool-image"
-        app:srcCompat="@drawable/camera" />
+        app:srcCompat="@mipmap/ic_logo_camera_black" />
 
     <Button
         android:id="@+id/button2"

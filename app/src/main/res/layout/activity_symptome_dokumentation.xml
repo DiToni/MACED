@@ -80,10 +80,29 @@
         android:layout_height="36dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="13dp"
         android:background="#AA1A1A"
-        android:textColor="#FFF"
-        android:text="@string/ok" />
+        android:text="@string/ok"
+        android:textColor="#FFF" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="334dp"
+        android:layout_height="112dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="107dp"
+        app:srcCompat="@mipmap/ic_logo_camera_red" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="48dp"
+        android:layout_height="38dp"
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-107dp"
+        android:onClick="onClickButtonCamera"
+        app:srcCompat="@mipmap/ic_logo_camera_black" />
 
 
 </RelativeLayout>

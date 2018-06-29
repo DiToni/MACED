@@ -1,6 +1,8 @@
 package com.example.anton.ma_ced;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -60,5 +62,17 @@ public class SymptomeDokumentation extends AppCompatActivity {
                 mTimePicker.show();
             }
         });
+    }
+
+    public void onClickButtonCamera (final View openView){
+        capturePhoto();
+    }
+
+    public void capturePhoto() {
+        Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+
+            startActivityForResult(intent, 1);
+        }
     }
 }

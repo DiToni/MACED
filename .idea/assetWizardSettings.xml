@@ -16,11 +16,49 @@
                             <entry key="launcherLegacy">
                               <value>
                                 <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="clipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="aa1a1a" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_local_hospital_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="paddingPercent" value="15" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
+                                      <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="CIRCLE" />
-                                      <entry key="imageAsset" value="C:\Users\robin\Sciebo\Module\MAE - mobile App Entwicklung\Logo\Ergebnisse\final\bg_weiss.png" />
+                                      <entry key="imageAsset" value="$USER_HOME$/sciebo/Madlin_Kai_Toni_Robin/MoApp/Logo/bg_weiss.png" />
                                       <entry key="outputName" value="ic_logo_round_bg_white" />
                                     </map>
                                   </option>

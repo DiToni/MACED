@@ -80,11 +80,7 @@ public class CreateStool extends AppCompatActivity {
         }
     }
 
-    public void textFeldLesen(){
-        EditText et = (EditText) findViewById(R.id.timeEditText);
-        String s = et.getText().toString();
-        Log.i("String", s);
-    }
+
 
     /*public String getTime(){
         int hour = tp.getHour();
