@@ -28,6 +28,7 @@ public class SplashScreen extends AppCompatActivity {
                     sleep(3000);
 
                 //    if (abfrage2 ) {
+
                         Intent intent = new Intent(getApplicationContext(), ScreenLogin.class);
                         startActivity(intent);
                   /*  } else {

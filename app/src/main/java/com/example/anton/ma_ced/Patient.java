@@ -1,17 +1,61 @@
 package com.example.anton.ma_ced;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonParseException;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.JsonDeserializer;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
-public class Patient {
+
+public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patient>{
+    @SerializedName("givenname")
     private String vorname;
+    @SerializedName("surname")
     private String nachname;
-    private LocalDate birthdate;
+    /*@SerializedName("birthdate")
+    private LocalDate birthdate;*/
+    @SerializedName("height")
     private int height; // in cm
+    @SerializedName("weight")
     private double weight; // in kg
+    @SerializedName("pin")
     private int pin;
+    @SerializedName("password")
     private int password;
+    private static Patient patient;
+    private static File file = new File("");
+
+    public static Patient instance(){
+        if (patient == null){
+            patient = new Patient();
+        }
+        return patient;
+    }
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
 
     public ArrayList<Stool> getStoolList() {
         return stoolList;
@@ -38,8 +82,8 @@ public class Patient {
     }
 
     private ArrayList<Stool> stoolList = new ArrayList<Stool>();
-    private ArrayList<Pain> painList;
-    private ArrayList<Symptom> symptomList;
+    private ArrayList<Pain> painList = new ArrayList<Pain>();
+    private ArrayList<Symptom> symptomList = new ArrayList<Symptom>();
 
 
     public String getVorname() {
@@ -58,13 +102,13 @@ public class Patient {
         this.nachname = nachname;
     }
 
-    public LocalDate getBirthdate() {
+   /* public LocalDate getBirthdate() {
         return birthdate;
     }
 
     public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
-    }
+    }*/
 
     public int getHeight() {
         return height;
@@ -109,8 +153,73 @@ public class Patient {
         getSymptomList().add(s);
     }
 
+    public static void serialisieren(){
+
+        Gson gson = new Gson();
+        //instance().setBirthdate();
+        instance().setNachname("Müller");
+        instance().setVorname("Hans");
+        instance().setHeight(123);
+        instance().setWeight(123.5);
+        instance().setPin(1234);
+        instance().setPassword(1234);
 
 
+        String json = gson.toJson(instance());
+        System.out.println(json);
+        /*try (FileOutputStream fos = new FileOutputStream(file);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)){
+
+            oos.writeObject(instance());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+    }
+
+    public static void deserialisieren() {
+        /*String json = "{'height':12, 'birthdate' = null}";
+        Gson gson = new Gson();
+        Patient patient = gson.
+        System.out.println(json);*/
+        /*try (FileInputStream fis = new FileInputStream(file);
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            patient = (Patient) ois.readObject();
+
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+        }
+    return patient;*/
+    }
 
 
+    @Override
+    public JsonElement serialize(Patient src, Type typeOfSrc, JsonSerializationContext context) {
+        final JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("givenname", instance().getVorname());
+        jsonObject.addProperty("surname", instance().getNachname());
+        jsonObject.addProperty("height", instance().getHeight());
+        jsonObject.addProperty("weight", instance().getWeight());
+        jsonObject.addProperty("pin", instance().getPassword());
+        jsonObject.addProperty("password", instance().getPassword());
+
+        final JsonElement jsonElementStool = context.serialize(instance().getStoolList());
+        jsonObject.add("stool", jsonElementStool);
+
+        final JsonElement jsonElementPain = context.serialize(instance().getPainList());
+        jsonObject.add("pain", jsonElementPain);
+
+        final JsonElement jsonElementSymptom = context.serialize(instance().getSymptomList());
+        jsonObject.add("symptom", jsonElementSymptom);
+
+        return jsonObject;
+    }
+
+    @Override
+    public Patient deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        return null;
+    }
 }

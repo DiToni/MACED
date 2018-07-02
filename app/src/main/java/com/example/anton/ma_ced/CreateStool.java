@@ -8,7 +8,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TimePicker;
+
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
@@ -16,10 +21,12 @@ import java.util.Calendar;
 public class CreateStool extends AppCompatActivity {
     //TimePicker
     private EditText time;
+    private SeekBar seekBar;
     java.util.Calendar mcurrentTime = java.util.Calendar.getInstance();
     private int hour = mcurrentTime.get(java.util.Calendar.HOUR_OF_DAY);
     private int minute = mcurrentTime.get(Calendar.MINUTE);
     DecimalFormat df= new DecimalFormat("00");
+
 
 
     @Override
@@ -45,9 +52,32 @@ public class CreateStool extends AppCompatActivity {
 
             }
         });
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
     }
 
     public void onClickButtonWeiter(final View openView) {
+
+        final GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Patient.class, Patient.instance());
+
+        final Gson gson = gsonBuilder.create();
+
+        final Stool stool = new Stool();
+        stool.setScore(seekBar.getProgress());
+        stool.setTime(time.getText().toString());
+        stool.setDate("13.April 2018");
+        Patient.instance().setNachname("Müller");
+        Patient.instance().setVorname("Hans");
+        Patient.instance().setWeight(123);
+        Patient.instance().addStool(stool);
+
+
+        final String json = gson.toJson(Patient.instance());
+        System.out.println(json);
+
+
+
+
         Intent intent = new Intent(getApplicationContext(), StoolList.class);
         startActivity(intent);
     }

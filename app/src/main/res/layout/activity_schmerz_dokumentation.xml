@@ -167,7 +167,6 @@
         android:textSize="15sp" />
 
 
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -175,9 +174,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
-        android:text="@android:string/ok"
         android:background="#AA1A1A"
-        android:textColor="#FFF"/>
+        android:onClick="onClickButtonWeiter"
+        android:text="@android:string/ok"
+        android:textColor="#FFF" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="340dp"
