@@ -95,7 +95,7 @@ public class SchmerzDokumentation extends AppCompatActivity {
         spinnerZeitraum=(Spinner)findViewById(R.id.spinnerZeitraum);
         ArrayAdapter<CharSequence> adapterZeitraum= ArrayAdapter.createFromResource(this, R.array.zeitraum, android.R.layout.simple_spinner_item);
         adapterZeitraum.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerArt.setAdapter(adapterZeitraum);
+        spinnerZeitraum.setAdapter(adapterZeitraum);
 
         //TimePicker
         time = (EditText) findViewById(R.id.schmerztime);
