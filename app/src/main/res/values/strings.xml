@@ -9,6 +9,10 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_onboarding_site1">Einstellungen</string>
     <string name="title_activity_monatuebersicht">Monatsübersicht</string>
+    <string name="title_activity_schmerzdokumentation">Schmerzdokumentation</string>
+    <string name="title_activity_pdfexportieren">pdf exportieren</string>
+    <string name="title_activity_symptomhinzufuegen">Symptom hinzufügen</string>
+    <string name="title_activity_symptomedokumentation">Symptom dokumentieren</string>
 
     <!-- Strings related to Settings -->
 
@@ -86,6 +90,7 @@
     <string name="Schutzmechanismus">Schutzmechanismus</string>
     <string name="Pin_Passwort">Pin / Passwort ändern</string>
     <string name="App_Schutz">App_Schutz</string>
+    <string name="Is_App_Schutz">0</string>
     <string name="Pin_String">Pin</string>
     <string name="Passwort_String">Passwort</string>
 

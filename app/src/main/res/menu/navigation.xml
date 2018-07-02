@@ -4,15 +4,15 @@
 
     <item
         android:id="@+id/stuhl"
-        android:icon="@drawable/poop"
-        android:title="Datum" />
+        android:icon="@mipmap/ic_logo_poop_black"
+        android:title="Stuhl" />
     <item
         android:id="@+id/schmerzen"
-        android:icon="@drawable/flash"
-        android:title="Datum" />
+        android:icon="@mipmap/ic_logo_flash_red"
+        android:title="Schmerzen" />
 
     <item
         android:id="@+id/symptome"
-        android:icon="@drawable/hospital"
-        android:title="Datum" />
+        android:icon="@mipmap/ic_logo_hospital_red"
+        android:title="Symptome" />
 </menu>

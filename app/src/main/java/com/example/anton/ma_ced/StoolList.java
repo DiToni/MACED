@@ -113,11 +113,11 @@ public class StoolList extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.schmerzen:
-                intent = new Intent(getApplicationContext(), SplashScreen.class);
+                intent = new Intent(getApplicationContext(), SchmerzDokumentation.class);
                 startActivity(intent);
                 break;
             case R.id.symptome:
-                intent = new Intent(getApplicationContext(), Calendar.class);
+                intent = new Intent(getApplicationContext(), SymptomeDokumentation.class);
                 startActivity(intent);
                 break;
 
