@@ -53,7 +53,6 @@
         <activity android:name=".SymptomeDokumentation" android:label="@string/title_activity_symptomedokumentation" />
         <activity android:name=".SymptomHinzufuegen" android:label="@string/title_activity_symptomhinzufuegen"/>
         <activity android:name=".PDFexportieren" android:label="@string/title_activity_pdfexportieren"/>
-        <activity android:name=".ProtectionMechanism"/>
         <activity android:name=".CreateStool" />
         <activity android:name=".StoolList" />
         <activity android:name=".StoolScale" />

@@ -57,7 +57,8 @@ public class Calendar extends android.support.v4.app.Fragment {
         compactCalendarView.displayOtherMonthDays(false);
         //compactCalendarView.setIsRtl(true);
 
-        Patient patient = new Patient();//todo: false position
+        Patient patient = Patient.instance();//todo: false position
+        patient.addStoolEvent(2018, 06, 3, 10, 56, new Stool());//todo:test
         compactCalendarView.addEvents(patient.getEventList());//todo: false position
 
         compactCalendarView.invalidate();

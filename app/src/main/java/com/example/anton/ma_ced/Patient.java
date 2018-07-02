@@ -1,28 +1,24 @@
 package com.example.anton.ma_ced;
 
+import android.graphics.Color;
+
+import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonParseException;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.google.gson.JsonDeserializer;
+import com.google.gson.annotations.SerializedName;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.lang.reflect.Type;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patient>{
@@ -42,6 +38,11 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
     private int password;
     private static Patient patient;
 
+    private ArrayList<Stool> stoolList = new ArrayList<Stool>();
+    private ArrayList<Pain> painList = new ArrayList<Pain>();
+    private ArrayList<Symptom> symptomList = new ArrayList<Symptom>();
+    private List<Event> eventList = new ArrayList<>(); //as propertie?! observervableList ->load with json
+    Calendar currentCalendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+1"), Locale.GERMANY);
 
     public static Patient instance(){
         if (patient == null){
@@ -74,10 +75,6 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
     public void setSymptomList(ArrayList<Symptom> symptomList) {
         this.symptomList = symptomList;
     }
-
-    private ArrayList<Stool> stoolList = new ArrayList<Stool>();
-    private ArrayList<Pain> painList = new ArrayList<Pain>();
-    private ArrayList<Symptom> symptomList = new ArrayList<Symptom>();
 
 
     public String getVorname() {
@@ -145,6 +142,42 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
     }
     public void addSymptom(Symptom s){
         getSymptomList().add(s);
+    }
+
+    public List<Event> getEventList() {
+        return eventList;
+    }
+
+    public void setEventList(List<Event> eventList) {
+        this.eventList = eventList;
+    }
+
+    /**
+     *
+     * @param year
+     * @param month 0 = january
+     * @param day
+     * @param hour
+     * @param minute
+     * @param stool
+     */
+    public void addStoolEvent(int year, int month, int day, int hour, int minute, Stool stool){
+        int brownColor = Color.argb(255, 0, 0, 255);
+        eventList.add(new Event(brownColor, computeTimeInMillis(year, month,  day, hour, minute), stool));
+    }
+
+    /**
+     *
+     * @param year
+     * @param month 0 = january
+     * @param day
+     * @param hour
+     * @param minute
+     * @return timeInMillis
+     */
+    private long computeTimeInMillis(int year, int month, int day, int hour, int minute){
+        currentCalendar.set(year, month, day, hour, minute);
+        return currentCalendar.getTimeInMillis();
     }
 
     public static void serialisieren(){
