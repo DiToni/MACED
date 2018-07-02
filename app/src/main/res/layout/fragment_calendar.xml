@@ -2,12 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_calendar"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/compactcalendar_view"
         android:layout_width="match_parent"
-        android:layout_height="428dp"
+        android:layout_height="384dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
 
@@ -19,14 +20,16 @@
         app:compactCalendarCurrentSelectedDayTextColor="#fff"
         app:compactCalendarTargetHeight="250dp"
         app:compactCalendarTextColor="#aa1a1a"
-        app:compactCalendarTextSize="12sp" />
+        app:compactCalendarTextSize="16sp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_calendar_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:text="tw_month" />
+        android:layout_marginTop="60dp"
+        android:text="Januar - 2000"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp" />
 </RelativeLayout>
