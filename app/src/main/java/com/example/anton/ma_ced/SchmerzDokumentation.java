@@ -2,10 +2,14 @@ package com.example.anton.ma_ced;
 
 import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -29,12 +33,21 @@ public class SchmerzDokumentation extends AppCompatActivity {
     //Schmerzzeitraum
     private Spinner spinnerZeitraum;
 
+    //Schmerz erstellen
+    private Button ok;
+
     //TimePicker
     private EditText time;
     java.util.Calendar mcurrentTime = java.util.Calendar.getInstance();
     private int hour = mcurrentTime.get(java.util.Calendar.HOUR_OF_DAY);
     private int minute = mcurrentTime.get(Calendar.MINUTE);
     DecimalFormat df= new DecimalFormat("00");
+
+    //Nahrungsaufnahme
+    private CheckBox checkBox2;
+
+    //Notizen zur Nahrungsaufnahme
+    private TextInputEditText nahrung;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,5 +128,38 @@ public class SchmerzDokumentation extends AppCompatActivity {
 
             }
         });
+
+        checkBox2= (CheckBox)findViewById(R.id.checkBox2);
+        nahrung= (TextInputEditText)findViewById(R.id.nahrung);
+        ok=(Button)findViewById(R.id.buttonOK);
+        ok.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View w){
+                Pain p= new Pain();
+                p.setScore(Integer.parseInt(skala.getText().toString()));
+                if(spinnerLokalisation!=null){
+                    p.setLocalization(spinnerLokalisation.getSelectedItem().toString());
+                }
+
+                if(spinnerArt!=null){
+                    p.setType(spinnerArt.getSelectedItem().toString());
+                }
+
+                if(spinnerZeitraum!=null){
+                    p.setPeriod(spinnerZeitraum.getSelectedItem().toString());
+                }
+
+                p.setIngestion(checkBox2.isActivated());
+                if(checkBox2.isActivated() && nahrung.getText()!=null){
+                    p.setNotes(nahrung.getText().toString());
+                }else{
+                    p.setNotes("");
+                }
+
+                p.setTime(time.getText().toString());
+
+                //NOCH HINZUFUEGEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            }
+        });
+
     }
 }

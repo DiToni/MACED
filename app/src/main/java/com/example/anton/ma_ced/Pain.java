@@ -1,11 +1,14 @@
 package com.example.anton.ma_ced;
 
+import java.time.LocalDate;
+
 public class Pain {
-    // TODO private DATENTYP date
-    // TODO private DATENTYP time
+    private LocalDate date;
+    private String time;
     private int score;
     private String localization;
-    private String period; // in minutes
+    private String type;
+    private String period;
     private boolean ingestion;  //Nahrungsaufnahme
     private String notes;
 
@@ -49,8 +52,27 @@ public class Pain {
         this.notes = notes;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
+    public String getTime() {
+        return time;
+    }
 
+    public void setTime(String time) {
+        this.time = time;
+    }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
