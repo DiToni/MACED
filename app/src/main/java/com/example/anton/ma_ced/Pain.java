@@ -70,7 +70,24 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain>{
 
     @Override
     public Pain deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        return null;
+        final JsonObject jsonObject = json.getAsJsonObject();
+
+        final String jsonTime = jsonObject.get("time").getAsString();
+        final int jsonScore = jsonObject.get("score").getAsInt();
+        final String jsonLocalization = jsonObject.get("localization").getAsString();
+        final String jsonPeriod = jsonObject.get("period").getAsString();
+        final boolean jsonIngestion = jsonObject.get("ingestion").getAsBoolean();
+        final String jsonNotes = jsonObject.get("notes").getAsString();
+
+
+        final Pain pain = new Pain();
+        pain.setTime(jsonTime);
+        pain.setScore(jsonScore);
+        pain.setLocalization(jsonLocalization);
+        pain.setPeriod(jsonPeriod);
+        pain.setIngestion(jsonIngestion);
+        pain.setNotes(jsonNotes);
+        return pain;
     }
 
     @Override

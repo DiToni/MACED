@@ -41,7 +41,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
     @SerializedName("password")
     private int password;
     private static Patient patient;
-    private static File file = new File("");
+
 
     public static Patient instance(){
         if (patient == null){
@@ -49,13 +49,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         }
         return patient;
     }
-    public File getFile() {
-        return file;
-    }
 
-    public void setFile(File file) {
-        this.file = file;
-    }
 
     public ArrayList<Stool> getStoolList() {
         return stoolList;
@@ -203,7 +197,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         jsonObject.addProperty("surname", instance().getNachname());
         jsonObject.addProperty("height", instance().getHeight());
         jsonObject.addProperty("weight", instance().getWeight());
-        jsonObject.addProperty("pin", instance().getPassword());
+        jsonObject.addProperty("pin", instance().getPin());
         jsonObject.addProperty("password", instance().getPassword());
 
         final JsonElement jsonElementStool = context.serialize(instance().getStoolList());
@@ -220,6 +214,27 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
 
     @Override
     public Patient deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        return null;
+       final JsonObject jsonObject = json.getAsJsonObject();
+
+       final String jsonGivenname = jsonObject.get("givenname").getAsString();
+       final String jsonSurname = jsonObject.get("surname").getAsString();
+       final int jsonHeight = jsonObject.get("height").getAsInt();
+       final int jsonWeight = jsonObject.get("weight").getAsInt();
+       final int jsonPin = jsonObject.get("pin").getAsInt();
+       final int jsonPassword = jsonObject.get("password").getAsInt();
+
+       stoolList  = context.deserialize(jsonObject.get("stool"), Stool.class);
+       painList = context.deserialize(jsonObject.get("pain"), Pain.class);
+       symptomList = context.deserialize(jsonObject.get("symptom"), Symptom.class);
+
+       instance().setWeight(jsonWeight);
+       instance().setHeight(jsonHeight);
+       instance().setVorname(jsonGivenname);
+       instance().setNachname(jsonSurname);
+       instance().setPin(jsonPin);
+       instance().setPassword(jsonPassword);
+
+
+        return instance();
     }
 }

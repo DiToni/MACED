@@ -82,6 +82,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="13dp"
         android:background="#AA1A1A"
+        android:onClick="onClickButtonWeiter"
         android:text="@string/ok"
         android:textColor="#FFF" />
 

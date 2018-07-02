@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
@@ -27,6 +30,10 @@ public class SymptomeDokumentation extends AppCompatActivity {
     private int hour = mcurrentTime.get(java.util.Calendar.HOUR_OF_DAY);
     private int minute = mcurrentTime.get(Calendar.MINUTE);
     DecimalFormat df= new DecimalFormat("00");
+    
+    
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,5 +81,28 @@ public class SymptomeDokumentation extends AppCompatActivity {
 
             startActivityForResult(intent, 1);
         }
+    }
+
+    public void onClickButtonWeiter (final View onView){
+        final GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Patient.class, Patient.instance());
+
+        final Gson gson = gsonBuilder.create();
+
+        Symptom symptom = new Symptom();
+        symptom.setTime(time.getText().toString());
+        //symptom.setNote();
+        symptom.setPeriod(spinnerSyZeitraum.getSelectedItem().toString());
+        symptom.setSymptom(spinnerSymptom.getSelectedItem().toString());
+
+        Patient.instance().addSymptom(symptom);
+
+        final String json = gson.toJson(Patient.instance());
+        System.out.println(json);
+
+
+
+        Intent intent = new Intent(getApplicationContext(), StoolList.class);
+        startActivity(intent);
     }
 }

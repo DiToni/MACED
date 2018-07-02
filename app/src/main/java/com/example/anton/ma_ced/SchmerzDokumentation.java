@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -39,6 +40,9 @@ public class SchmerzDokumentation extends AppCompatActivity {
     private int hour = mcurrentTime.get(java.util.Calendar.HOUR_OF_DAY);
     private int minute = mcurrentTime.get(Calendar.MINUTE);
     DecimalFormat df= new DecimalFormat("00");
+
+    //Checkbox
+    private CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +123,9 @@ public class SchmerzDokumentation extends AppCompatActivity {
 
             }
         });
+
+        //Checkbox
+        checkBox = (CheckBox) findViewById(R.id.checkBox2);
     }
 
     public void onClickButtonWeiter(final View openView){
@@ -129,6 +136,12 @@ public class SchmerzDokumentation extends AppCompatActivity {
         final Gson gson = gsonBuilder.create();
 
         Pain pain = new Pain();
+        pain.setIngestion(checkBox.isChecked());
+        pain.setLocalization(spinnerLokalisation.getSelectedItem().toString());
+        //pain.setNotes();
+        pain.setPeriod(spinnerZeitraum.getSelectedItem().toString());
+        pain.setScore(seekBar.getProgress());
+        pain.setTime(time.getText().toString());
 
         Patient.instance().addPain(pain);
 
