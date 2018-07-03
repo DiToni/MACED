@@ -221,9 +221,9 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
        final JsonObject jsonObject = json.getAsJsonObject();
 
        /*final String jsonGivenname = jsonObject.get("givenname").getAsString();
-       final String jsonSurname = jsonObject.get("surname").getAsString();*/
+       final String jsonSurname = jsonObject.get("surname").getAsString();
        final int jsonHeight = jsonObject.get("height").getAsInt();
-       final int jsonWeight = jsonObject.get("weight").getAsInt();
+       final int jsonWeight = jsonObject.get("weight").getAsInt();*/
        final int jsonPin = jsonObject.get("pin").getAsInt();
        final String jsonPassword = jsonObject.get("password").getAsString();
 
