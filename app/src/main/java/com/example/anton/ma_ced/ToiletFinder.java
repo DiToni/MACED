@@ -1,17 +1,10 @@
 package com.example.anton.ma_ced;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,7 +36,7 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
 
         latitude = mLocation.getLatitude();
         longitude = mLocation.getLongitude();
-
+/*
         //dritter Versuch
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -88,13 +81,13 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
             }
         }
 
-
+*/
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_toilet_finder);
         mapFragment.getMapAsync(this);
     }
-
+/*
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -106,7 +99,7 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
-
+*/
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -123,9 +116,10 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         //  LatLng sydney = new LatLng(-34, 151);
 
-        LatLng sydney = new LatLng(latitude, longitude);
+        LatLng sydney = new LatLng(mLocation.getLatitude(), mLocation.getLongitude());
         mMap.addMarker(new MarkerOptions().position(sydney).title("I'm here..."));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
     }
 
 
