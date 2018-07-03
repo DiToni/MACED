@@ -3,6 +3,7 @@ package com.example.anton.ma_ced;
 import android.graphics.Color;
 
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -21,20 +22,20 @@ import java.util.TimeZone;
 
 
 public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patient>{
-    @SerializedName("givenname")
+    /*@SerializedName("givenname")
     private String vorname;
     @SerializedName("surname")
     private String nachname;
-    /*@SerializedName("birthdate")
-    private LocalDate birthdate;*/
+    @SerializedName("birthdate")
+    private LocalDate birthdate;
     @SerializedName("height")
     private int height; // in cm
     @SerializedName("weight")
-    private double weight; // in kg
+    private double weight; // in kg*/
     @SerializedName("pin")
     private int pin;
     @SerializedName("password")
-    private int password;
+    private String password;
     private static Patient patient;
 
     private ArrayList<Stool> stoolList = new ArrayList<Stool>();
@@ -75,8 +76,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         this.symptomList = symptomList;
     }
 
-
-    public String getVorname() {
+    /*public String getVorname() {
         return vorname;
     }
 
@@ -92,13 +92,13 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         this.nachname = nachname;
     }
 
-   /* public LocalDate getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
     public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
-    }*/
+    }
 
     public int getHeight() {
         return height;
@@ -114,7 +114,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
 
     public void setWeight(double weight) {
         this.weight = weight;
-    }
+    }*/
 
     public int getPin() {
         return pin;
@@ -124,25 +124,23 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         this.pin = pin;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
+
     public void addStool(Stool s){
         getStoolList().add(s);
-        addStoolEvent(s);
     }
     public void addPain(Pain p){
         getPainList().add(p);
-        addPainEvent(p);
     }
     public void addSymptom(Symptom s){
         getSymptomList().add(s);
-        addSymptomEvent(s);
     }
 
     public List<Event> getEventList() {
@@ -155,48 +153,42 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
 
     /**
      *
+     * @param year
+     * @param month 0 = january
+     * @param day
+     * @param hour
+     * @param minute
      * @param stool
      */
-    public void addStoolEvent(Stool stool){//todo: by adding a new event, add event to compactcalenderview
-        int blueColor = Color.argb(255, 0, 0, 255);
-        eventList.add(new Event(blueColor, computeTimeInMillis(stool.getCalendar()), stool));
+    public void addStoolEvent(int year, int month, int day, int hour, int minute, Stool stool){
+        int brownColor = Color.argb(255, 0, 0, 255);
+        eventList.add(new Event(brownColor, computeTimeInMillis(year, month,  day, hour, minute), stool));
     }
 
     /**
      *
-     * @param pain
+     * @param year
+     * @param month 0 = january
+     * @param day
+     * @param hour
+     * @param minute
+     * @return timeInMillis
      */
-    public void addPainEvent(Pain pain){
-        int greenColor = Color.argb(255, 0, 0, 255);
-        eventList.add(new Event(greenColor, computeTimeInMillis(pain.getCalendar()), pain));
-    }
-
-    /**
-     *
-     * @param symptom
-     */
-    public void addSymptomEvent(Symptom symptom){
-        int redColor = Color.argb(255, 255, 0, 0);
-        eventList.add(new Event(redColor, computeTimeInMillis(symptom.getCalendar()), symptom));
-    }
-
-    /**
-     * january = 0
-     * @param calendar
-     * @return
-     */
-    private long computeTimeInMillis(Calendar calendar){
-        currentCalendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),  calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
+    private long computeTimeInMillis(int year, int month, int day, int hour, int minute){
+        currentCalendar.set(year, month, day, hour, minute);
         return currentCalendar.getTimeInMillis();
     }
+
+
+
 
     @Override
     public JsonElement serialize(Patient src, Type typeOfSrc, JsonSerializationContext context) {
         final JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("givenname", instance().getVorname());
+        /*jsonObject.addProperty("givenname", instance().getVorname());
         jsonObject.addProperty("surname", instance().getNachname());
         jsonObject.addProperty("height", instance().getHeight());
-        jsonObject.addProperty("weight", instance().getWeight());
+        jsonObject.addProperty("weight", instance().getWeight());*/
         jsonObject.addProperty("pin", instance().getPin());
         jsonObject.addProperty("password", instance().getPassword());
 
@@ -216,21 +208,21 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
     public Patient deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
        final JsonObject jsonObject = json.getAsJsonObject();
 
-       final String jsonGivenname = jsonObject.get("givenname").getAsString();
-       final String jsonSurname = jsonObject.get("surname").getAsString();
+       /*final String jsonGivenname = jsonObject.get("givenname").getAsString();
+       final String jsonSurname = jsonObject.get("surname").getAsString();*/
        final int jsonHeight = jsonObject.get("height").getAsInt();
        final int jsonWeight = jsonObject.get("weight").getAsInt();
        final int jsonPin = jsonObject.get("pin").getAsInt();
-       final int jsonPassword = jsonObject.get("password").getAsInt();
+       final String jsonPassword = jsonObject.get("password").getAsString();
 
-       stoolList  = context.deserialize(jsonObject.get("stool"), Stool.class);
-       painList = context.deserialize(jsonObject.get("pain"), Pain.class);
-       symptomList = context.deserialize(jsonObject.get("symptom"), Symptom.class);
+       stoolList  = context.deserialize(jsonObject.get("stool"), stoolList.getClass());
+       painList = context.deserialize(jsonObject.get("pain"), painList.getClass());
+       symptomList = context.deserialize(jsonObject.get("symptom"), symptomList.getClass());
 
-       instance().setWeight(jsonWeight);
+       /*instance().setWeight(jsonWeight);
        instance().setHeight(jsonHeight);
        instance().setVorname(jsonGivenname);
-       instance().setNachname(jsonSurname);
+       instance().setNachname(jsonSurname);*/
        instance().setPin(jsonPin);
        instance().setPassword(jsonPassword);
 

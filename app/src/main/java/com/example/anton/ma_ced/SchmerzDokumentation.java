@@ -13,10 +13,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
@@ -147,6 +151,27 @@ public class SchmerzDokumentation extends AppCompatActivity {
 
         final String json = gson.toJson(Patient.instance());
         System.out.println(json);
+
+        FileOutputStream fos = null;
+
+        try {
+            fos = openFileOutput("serialize.json", MODE_PRIVATE);
+            fos.write(json.getBytes());
+            Toast.makeText(this, "Saved to " + getFilesDir() + "/" + "serialize.txt",
+                    Toast.LENGTH_LONG).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
 
 

@@ -10,8 +10,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.util.ArrayList;
 
 public class StoolList extends AppCompatActivity {
     private static final String SELECTED_ITEM = "arg_selected_item";
@@ -112,6 +116,10 @@ public class StoolList extends AppCompatActivity {
         switch(mSelectedItem){
             case R.id.stuhl:
                 intent = new Intent(getApplicationContext(), CreateStool.class);
+                for (final Stool s: Patient.instance().getStoolList()){
+
+                }
+
                 startActivity(intent);
                 break;
             case R.id.schmerzen:
