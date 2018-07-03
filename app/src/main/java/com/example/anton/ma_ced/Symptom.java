@@ -16,7 +16,7 @@ public class Symptom implements JsonSerializer<Symptom>, JsonDeserializer<Sympto
     //TODO private DATENTYP picture
     private String symptom;
     private String period; // in minutes
-    private String note;
+    //private String note;
 
     public String getSymptom() {
         return symptom;
@@ -34,13 +34,13 @@ public class Symptom implements JsonSerializer<Symptom>, JsonDeserializer<Sympto
         this.period = period;
     }
 
-    public String getNote() {
+    /*public String getNote() {
         return note;
     }
 
     public void setNote(String note) {
         this.note = note;
-    }
+    }*/
 
     public String getTime() {
         return time;
@@ -56,12 +56,12 @@ public class Symptom implements JsonSerializer<Symptom>, JsonDeserializer<Sympto
         final String jsonTime = jsonObject.get("time").getAsString();
         final String jsonSymptom = jsonObject.get("symptom").getAsString();
         final String jsonPeriod = jsonObject.get("period").getAsString();
-        final String jsonNote = jsonObject.get("note").getAsString();
+        //final String jsonNote = jsonObject.get("note").getAsString();
 
 
         final Symptom symptom = new Symptom();
         symptom.setSymptom(jsonSymptom);
-        symptom.setNote(jsonNote);
+        //symptom.setNote(jsonNote);
         symptom.setTime(jsonTime);
         symptom.setPeriod(jsonPeriod);
         return symptom;
@@ -73,7 +73,7 @@ public class Symptom implements JsonSerializer<Symptom>, JsonDeserializer<Sympto
         jsonObject.addProperty("time", getTime());
         jsonObject.addProperty("period", getPeriod());
         jsonObject.addProperty("symptom", getSymptom());
-        jsonObject.addProperty("note", getNote());
+        //jsonObject.addProperty("note", getNote());
 
         return jsonObject;
     }

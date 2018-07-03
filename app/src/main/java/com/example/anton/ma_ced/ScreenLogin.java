@@ -72,7 +72,7 @@ public class ScreenLogin extends AppCompatActivity {
                 }
             }
 
-            Intent intent = new Intent(getApplicationContext(), StoolList.class);
+            Intent intent = new Intent(getApplicationContext(), BurgerMenu.class);
 
             startActivity(intent);
         }

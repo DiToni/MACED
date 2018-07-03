@@ -3,10 +3,12 @@ package com.example.anton.ma_ced;
 import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -48,6 +50,15 @@ public class SchmerzDokumentation extends AppCompatActivity {
     //Checkbox
     private CheckBox checkBox;
 
+    //Nahrungsaufnahme
+    private CheckBox checkBox2;
+
+    //Notizen zur Nahrungsaufnahme
+    private TextInputEditText nahrung;
+
+    //Schmerz erstellen
+    private Button ok;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +67,7 @@ public class SchmerzDokumentation extends AppCompatActivity {
         //Schmerzskala SeekBar
         seekBar=findViewById(R.id.seekBar1);
         skala=findViewById(R.id.textView16);
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             //für was ist "@SuppressLint("SetTextI18n")"??
             @SuppressLint("SetTextI18n")
@@ -130,6 +142,36 @@ public class SchmerzDokumentation extends AppCompatActivity {
 
         //Checkbox
         checkBox = (CheckBox) findViewById(R.id.checkBox2);
+        nahrung= (TextInputEditText)findViewById(R.id.nahrung);
+        ok=(Button)findViewById(R.id.buttonOK);
+        ok.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View w){
+                Pain p= new Pain();
+                p.setScore(Integer.parseInt(skala.getText().toString()));
+                if(spinnerLokalisation!=null){
+                    p.setLocalization(spinnerLokalisation.getSelectedItem().toString());
+                }
+
+                if(spinnerArt!=null){
+                    p.setType(spinnerArt.getSelectedItem().toString());
+                }
+
+                if(spinnerZeitraum!=null){
+                    p.setPeriod(spinnerZeitraum.getSelectedItem().toString());
+                }
+
+                p.setIngestion(checkBox2.isActivated());
+                if(checkBox2.isActivated() && nahrung.getText()!=null){
+                    p.setNotes(nahrung.getText().toString());
+                }else{
+                    p.setNotes("");
+                }
+
+                p.setTime(time.getText().toString());
+
+                //NOCH HINZUFUEGEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            }
+        });
     }
 
     public void onClickButtonWeiter(final View openView){
@@ -139,15 +181,31 @@ public class SchmerzDokumentation extends AppCompatActivity {
 
         final Gson gson = gsonBuilder.create();
 
-        Pain pain = new Pain();
-        pain.setIngestion(checkBox.isChecked());
-        pain.setLocalization(spinnerLokalisation.getSelectedItem().toString());
-        //pain.setNotes();
-        pain.setPeriod(spinnerZeitraum.getSelectedItem().toString());
-        pain.setScore(seekBar.getProgress());
-        pain.setTime(time.getText().toString());
+        Pain p= new Pain();
+        //score ist int
+        p.setScore(seekBar.getProgress());
+        if(spinnerLokalisation.getSelectedItem()!=null){
+            p.setLocalization(spinnerLokalisation.getSelectedItem().toString());
+        }
 
-        Patient.instance().addPain(pain);
+        if(spinnerArt.getSelectedItem()!=null){
+            p.setType(spinnerArt.getSelectedItem().toString());
+        }
+
+        if(spinnerZeitraum.getSelectedItem()!=null){
+            p.setPeriod(spinnerZeitraum.getSelectedItem().toString());
+        }
+
+        p.setIngestion(checkBox2.isActivated());
+        if(checkBox2.isActivated() && nahrung.getText()!=null){
+            p.setNotes(nahrung.getText().toString());
+        }else{
+            p.setNotes("");
+        }
+
+        p.setTime(time.getText().toString());
+
+        Patient.instance().addPain(p);
 
         final String json = gson.toJson(Patient.instance());
         System.out.println(json);

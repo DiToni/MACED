@@ -34,10 +34,6 @@ public class SymptomeDokumentation extends AppCompatActivity {
     private int hour = mcurrentTime.get(java.util.Calendar.HOUR_OF_DAY);
     private int minute = mcurrentTime.get(Calendar.MINUTE);
     DecimalFormat df= new DecimalFormat("00");
-    
-    
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +45,7 @@ public class SymptomeDokumentation extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapterSymptom= ArrayAdapter.createFromResource(this, R.array.symptome, android.R.layout.simple_spinner_item);
         adapterSymptom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSymptom.setAdapter(adapterSymptom);
+
 
         //Zeitraum Spinner hinzufuegen
         spinnerSyZeitraum= (Spinner)findViewById(R.id.spinnerSyZeitraum);
@@ -95,7 +92,9 @@ public class SymptomeDokumentation extends AppCompatActivity {
 
         Symptom symptom = new Symptom();
         symptom.setTime(time.getText().toString());
-        //symptom.setNote();
+        if(spinnerSymptom.getSelectedItem()!=null){
+            symptom.setSymptom(spinnerSymptom.getSelectedItem().toString());
+        }
         symptom.setPeriod(spinnerSyZeitraum.getSelectedItem().toString());
         symptom.setSymptom(spinnerSymptom.getSelectedItem().toString());
 
@@ -124,8 +123,6 @@ public class SymptomeDokumentation extends AppCompatActivity {
                 }
             }
         }
-
-
 
         Intent intent = new Intent(getApplicationContext(), StoolList.class);
         startActivity(intent);
