@@ -2,12 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.anton.ma_ced">
 
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -42,22 +47,39 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
+//von hier geändert
         <activity
             android:name=".ToiletFinder"
-            android:label="@string/title_activity_toilet_finder" />
+            android:label="@string/title_activity_toilet_finder" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        // bis hier
         <activity android:name=".Settings" />
         <activity android:name=".SecurityScene" />
         <activity android:name=".ProtectionMechanism" />
-        <activity android:name=".SchmerzDokumentation"  android:label="@string/title_activity_schmerzdokumentation"/>
-        <activity android:name=".SymptomeDokumentation" android:label="@string/title_activity_symptomedokumentation" />
-        <activity android:name=".SymptomHinzufuegen" android:label="@string/title_activity_symptomhinzufuegen"/>
-        <activity android:name=".PDFexportieren" android:label="@string/title_activity_pdfexportieren"/>
-        <activity android:name=".ProtectionMechanism"/>
+        <activity
+            android:name=".SchmerzDokumentation"
+            android:label="@string/title_activity_schmerzdokumentation" />
+        <activity
+            android:name=".SymptomeDokumentation"
+            android:label="@string/title_activity_symptomedokumentation" />
+        <activity
+            android:name=".SymptomHinzufuegen"
+            android:label="@string/title_activity_symptomhinzufuegen" />
+        <activity
+            android:name=".PDFexportieren"
+            android:label="@string/title_activity_pdfexportieren" />
+     <!--   <activity android:name=".ProtectionMechanism" /> -->
         <activity android:name=".CreateStool" />
         <activity android:name=".StoolList" />
         <activity android:name=".StoolScale" />
-        <!--<activity android:name=".TimePicker"></activity>-->
+        <!-- <activity android:name=".TimePicker"></activity> -->
+        <activity
+            android:name=".toiletfinder2"
+            android:label="@string/title_activity_toiletfinder2"></activity>
     </application>
 
 </manifest>
