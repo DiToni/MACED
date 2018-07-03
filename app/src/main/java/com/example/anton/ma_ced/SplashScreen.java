@@ -5,14 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-
 public class SplashScreen extends AppCompatActivity {
     //SecurityScene s2 = new SecurityScene();
     //public boolean abfrage = true;
@@ -30,6 +22,9 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         //exchange thread with creating and loading patient
+        Patient patient = Patient.instance();
+        //seralize
+
         Thread myThread = new Thread(){
             @Override
             public void run() {

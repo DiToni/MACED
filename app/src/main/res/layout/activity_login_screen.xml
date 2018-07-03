@@ -25,6 +25,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="220dp"
         android:background="#aa1a1a"
+        android:textColor="#fff"
         android:drawableStart="@drawable/ic_action_password"
         android:ems="10"
         android:hint="@string/Passwort_String"
@@ -37,7 +38,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="94dp"
-        android:background="#bb345678"
+        android:background="#fff"
 
         android:onClick="onClickAnmeldeButton"
         android:text="Button" />

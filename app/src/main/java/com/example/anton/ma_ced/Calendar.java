@@ -1,5 +1,6 @@
 package com.example.anton.ma_ced;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -29,16 +30,7 @@ public class Calendar extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
-
-    /*//old
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
-    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -85,6 +77,8 @@ public class Calendar extends android.support.v4.app.Fragment {
             public void onDayClick(Date dateClicked) {
                 textViewCalendarDate.setText(dateFormatForMonth.format(dateClicked));
 
+                Intent intent = new Intent(getContext(), StoolList.class);
+                startActivity(intent);
                 //todo: open stoolList
             }
 

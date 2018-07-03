@@ -8,13 +8,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
 
 public class ScreenLogin extends AppCompatActivity {
 
@@ -35,8 +29,8 @@ public class ScreenLogin extends AppCompatActivity {
         String line = "";
 
         StringBuffer stringBuffer = new StringBuffer();
-        InputStream is = this.getResources().openRawResource(R.raw.);
-        Intent intent = new Intent(getApplicationContext(), StoolList.class);
+        InputStream is = this.getResources().openRawResource(R.raw.res);
+        Intent intent = new Intent(getApplicationContext(), BurgerMenu.class);
 
         startActivity(intent);
     }

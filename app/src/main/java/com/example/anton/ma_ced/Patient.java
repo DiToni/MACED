@@ -205,7 +205,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         }*/
     }
 
-    public static void deserialisieren() {
+    public static void deserialisieren() {//why static
         /*String json = "{'height':12, 'birthdate' = null}";
         Gson gson = new Gson();
         Patient patient = gson.
