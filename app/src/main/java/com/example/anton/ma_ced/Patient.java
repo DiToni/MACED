@@ -3,7 +3,6 @@ package com.example.anton.ma_ced;
 import android.graphics.Color;
 
 import com.github.sundeepk.compactcalendarview.domain.Event;
-import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -135,12 +134,15 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
 
     public void addStool(Stool s){
         getStoolList().add(s);
+        addStoolEvent(s);
     }
     public void addPain(Pain p){
         getPainList().add(p);
+        addPainEvent(p);
     }
     public void addSymptom(Symptom s){
         getSymptomList().add(s);
+        addSymptomEvent(s);
     }
 
     public List<Event> getEventList() {
@@ -151,31 +153,41 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         this.eventList = eventList;
     }
 
+
     /**
      *
-     * @param year
-     * @param month 0 = january
-     * @param day
-     * @param hour
-     * @param minute
      * @param stool
      */
-    public void addStoolEvent(int year, int month, int day, int hour, int minute, Stool stool){
-        int brownColor = Color.argb(255, 0, 0, 255);
-        eventList.add(new Event(brownColor, computeTimeInMillis(year, month,  day, hour, minute), stool));
+    public void addStoolEvent(Stool stool){//todo: by adding a new event, add event to compactcalenderview
+        int blueColor = Color.argb(255, 0, 0, 255);
+        eventList.add(new Event(blueColor, computeTimeInMillis(stool.getCalendar()), stool));
     }
 
     /**
      *
-     * @param year
-     * @param month 0 = january
-     * @param day
-     * @param hour
-     * @param minute
-     * @return timeInMillis
+     * @param pain
      */
-    private long computeTimeInMillis(int year, int month, int day, int hour, int minute){
-        currentCalendar.set(year, month, day, hour, minute);
+    public void addPainEvent(Pain pain){
+        int greenColor = Color.argb(255, 0, 0, 255);
+        eventList.add(new Event(greenColor, computeTimeInMillis(pain.getCalendar()), pain));
+    }
+
+    /**
+     *
+     * @param symptom
+     */
+    public void addSymptomEvent(Symptom symptom){
+        int redColor = Color.argb(255, 255, 0, 0);
+        eventList.add(new Event(redColor, computeTimeInMillis(symptom.getCalendar()), symptom));
+    }
+
+    /**
+     * january = 0
+     * @param calendar
+     * @return
+     */
+    private long computeTimeInMillis(Calendar calendar){
+        currentCalendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),  calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
         return currentCalendar.getTimeInMillis();
     }
 
@@ -209,9 +221,9 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
        final JsonObject jsonObject = json.getAsJsonObject();
 
        /*final String jsonGivenname = jsonObject.get("givenname").getAsString();
-       final String jsonSurname = jsonObject.get("surname").getAsString();*/
+       final String jsonSurname = jsonObject.get("surname").getAsString();
        final int jsonHeight = jsonObject.get("height").getAsInt();
-       final int jsonWeight = jsonObject.get("weight").getAsInt();
+       final int jsonWeight = jsonObject.get("weight").getAsInt();*/
        final int jsonPin = jsonObject.get("pin").getAsInt();
        final String jsonPassword = jsonObject.get("password").getAsString();
 

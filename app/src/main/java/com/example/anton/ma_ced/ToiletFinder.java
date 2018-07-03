@@ -34,9 +34,10 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
         gpsTracker = new GPSTracker(getApplicationContext());
         mLocation = gpsTracker.getLocation();
 
-        latitude = mLocation.getLatitude();
-        longitude = mLocation.getLongitude();
-/*
+        //latitude = mLocation.getLatitude();
+        //longitude = mLocation.getLongitude();
+
+        /*
         //dritter Versuch
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {

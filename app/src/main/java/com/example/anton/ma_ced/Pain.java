@@ -9,11 +9,13 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
-import java.time.LocalDate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.Calendar;
 
-public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain>{
-    private LocalDate date;
-    private String time;
+public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
+    private Calendar calendar;//date and time
     private int score;
     private String localization;
     private String type;
@@ -61,13 +63,6 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain>{
         this.notes = notes;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 
     public String getTime() {
         return time;
@@ -75,14 +70,6 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain>{
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     @Override

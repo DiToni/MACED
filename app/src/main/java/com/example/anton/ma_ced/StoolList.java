@@ -28,6 +28,8 @@ public class StoolList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stool_list);
 
+        //java.util.Calendar calendar = (Calendar) getIntent().getExtras().get("calendar");//todo: receive date from Calendar.class
+
         mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
         mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

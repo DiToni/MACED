@@ -32,8 +32,11 @@ public class ScreenLogin extends AppCompatActivity {
 
         final Gson gson = gsonBuilder.create();
 
+        File file = new File("serialize.json");
+
         FileInputStream fis = null;
         try {
+            file.createNewFile();//creates file if not exists
             fis = openFileInput("serialize.json");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
@@ -54,8 +57,7 @@ public class ScreenLogin extends AppCompatActivity {
 
 
         } catch (FileNotFoundException e) {
-            File file = new File("serialize.json");
-            System.out.println("Json File erstellt");
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
