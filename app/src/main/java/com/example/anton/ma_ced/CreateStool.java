@@ -2,15 +2,13 @@ package com.example.anton.ma_ced;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TimePicker;
-
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -64,8 +62,7 @@ public class CreateStool extends AppCompatActivity {
 
         final Stool stool = new Stool();
         stool.setScore(seekBar.getProgress());
-        stool.setTime(time.getText().toString());
-        stool.setDate("13.April 2018");
+        stool.setCalendar(mcurrentTime);//todo
         Patient.instance().setNachname("Müller");
         Patient.instance().setVorname("Hans");
         Patient.instance().setWeight(123);

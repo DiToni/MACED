@@ -141,7 +141,7 @@ public class SchmerzDokumentation extends AppCompatActivity {
         //pain.setNotes();
         pain.setPeriod(spinnerZeitraum.getSelectedItem().toString());
         pain.setScore(seekBar.getProgress());
-        pain.setTime(time.getText().toString());
+        pain.setCalendar(Calendar.getInstance());//todo: pain.setTime(time.getText().toString());
 
         Patient.instance().addPain(pain);
 

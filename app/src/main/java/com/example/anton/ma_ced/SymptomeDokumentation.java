@@ -90,7 +90,7 @@ public class SymptomeDokumentation extends AppCompatActivity {
         final Gson gson = gsonBuilder.create();
 
         Symptom symptom = new Symptom();
-        symptom.setTime(time.getText().toString());
+        symptom.setCalendar(Calendar.getInstance());//todo: symptom.setTime(time.getText().toString());
         //symptom.setNote();
         symptom.setPeriod(spinnerSyZeitraum.getSelectedItem().toString());
         symptom.setSymptom(spinnerSymptom.getSelectedItem().toString());

@@ -3,7 +3,6 @@ package com.example.anton.ma_ced;
 import android.graphics.Color;
 
 import com.github.sundeepk.compactcalendarview.domain.Event;
-import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -133,15 +132,17 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         this.password = password;
     }
 
-
     public void addStool(Stool s){
         getStoolList().add(s);
+        addStoolEvent(s);
     }
     public void addPain(Pain p){
         getPainList().add(p);
+        addPainEvent(p);
     }
     public void addSymptom(Symptom s){
         getSymptomList().add(s);
+        addSymptomEvent(s);
     }
 
     public List<Event> getEventList() {
@@ -154,74 +155,40 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
 
     /**
      *
-     * @param year
-     * @param month 0 = january
-     * @param day
-     * @param hour
-     * @param minute
      * @param stool
      */
-    public void addStoolEvent(int year, int month, int day, int hour, int minute, Stool stool){
-        int brownColor = Color.argb(255, 0, 0, 255);
-        eventList.add(new Event(brownColor, computeTimeInMillis(year, month,  day, hour, minute), stool));
+    public void addStoolEvent(Stool stool){//todo: by adding a new event, add event to compactcalenderview
+        int blueColor = Color.argb(255, 0, 0, 255);
+        eventList.add(new Event(blueColor, computeTimeInMillis(stool.getCalendar()), stool));
     }
 
     /**
      *
-     * @param year
-     * @param month 0 = january
-     * @param day
-     * @param hour
-     * @param minute
-     * @return timeInMillis
+     * @param pain
      */
-    private long computeTimeInMillis(int year, int month, int day, int hour, int minute){
-        currentCalendar.set(year, month, day, hour, minute);
+    public void addPainEvent(Pain pain){
+        int greenColor = Color.argb(255, 0, 0, 255);
+        eventList.add(new Event(greenColor, computeTimeInMillis(pain.getCalendar()), pain));
+    }
+
+    /**
+     *
+     * @param symptom
+     */
+    public void addSymptomEvent(Symptom symptom){
+        int redColor = Color.argb(255, 255, 0, 0);
+        eventList.add(new Event(redColor, computeTimeInMillis(symptom.getCalendar()), symptom));
+    }
+
+    /**
+     * january = 0
+     * @param calendar
+     * @return
+     */
+    private long computeTimeInMillis(Calendar calendar){
+        currentCalendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),  calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
         return currentCalendar.getTimeInMillis();
     }
-
-    public static void serialisieren(){
-
-        Gson gson = new Gson();
-        //instance().setBirthdate();
-        instance().setNachname("Müller");
-        instance().setVorname("Hans");
-        instance().setHeight(123);
-        instance().setWeight(123.5);
-        instance().setPin(1234);
-        instance().setPassword(1234);
-
-
-        String json = gson.toJson(instance());
-        System.out.println(json);
-        /*try (FileOutputStream fos = new FileOutputStream(file);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)){
-
-            oos.writeObject(instance());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-    }
-
-    public static void deserialisieren() {//why static
-        /*String json = "{'height':12, 'birthdate' = null}";
-        Gson gson = new Gson();
-        Patient patient = gson.
-        System.out.println(json);*/
-        /*try (FileInputStream fis = new FileInputStream(file);
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
-            patient = (Patient) ois.readObject();
-
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        } catch (ClassNotFoundException e1) {
-            e1.printStackTrace();
-        }
-    return patient;*/
-    }
-
 
     @Override
     public JsonElement serialize(Patient src, Type typeOfSrc, JsonSerializationContext context) {

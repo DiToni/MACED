@@ -49,10 +49,9 @@ public class Calendar extends android.support.v4.app.Fragment {
         compactCalendarView.displayOtherMonthDays(false);
         //compactCalendarView.setIsRtl(true);
 
-        Patient patient = Patient.instance();//todo: false position
-        patient.addStoolEvent(2018, 06, 3, 10, 56, new Stool());//todo:test
-        compactCalendarView.addEvents(patient.getEventList());//todo: false position
-
+        //clear ? compactCalendarView.
+        compactCalendarView.addEvents(Patient.instance().getEventList());//todo: false position
+        //CompactCalendarView.CompactCalendarViewListener
         compactCalendarView.invalidate();
 
         // below line will display Sunday as the first day of the week
@@ -78,8 +77,10 @@ public class Calendar extends android.support.v4.app.Fragment {
                 textViewCalendarDate.setText(dateFormatForMonth.format(dateClicked));
 
                 Intent intent = new Intent(getContext(), StoolList.class);
+                java.util.Calendar calendar = java.util.Calendar.getInstance();
+                calendar.setTime(dateClicked);  //converts date to calendar
+                intent.putExtra("calendar", calendar);   //pass date to StoolList.class
                 startActivity(intent);
-                //todo: open stoolList
             }
 
             @Override
