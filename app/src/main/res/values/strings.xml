@@ -157,5 +157,6 @@
         <item>Gewichtsverlust</item>
         <item>Aphthe</item>
     </string-array>
+    <string name="title_activity_toiletfinder2">Map</string>
 
 </resources>

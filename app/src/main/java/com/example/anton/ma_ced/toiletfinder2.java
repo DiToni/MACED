@@ -1,8 +1,7 @@
 package com.example.anton.ma_ced;
 
-import android.location.Location;
-import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,32 +10,29 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback {
+public class toiletfinder2 extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-
-    private GPSTracker gpsTracker;
-    private Location mLocation;
-    double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_toilet_finder);
-
-        gpsTracker = new GPSTracker(getApplicationContext());
-        mLocation = gpsTracker.getLocation();
-
-        latitude = mLocation.getLatitude();
-        longitude = mLocation.getLongitude();
-
+        setContentView(R.layout.activity_toiletfinder2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        setUpMapIfNeeded();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.nav_toilet_finder);
+                .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
 
+
+    private void setUpMapIfNeeded() {
+        if(mMap == null) {
+          //  mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getM
+                    //.getMap();
+        }
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -51,9 +47,8 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        //  LatLng sydney = new LatLng(-34, 151);
-        LatLng sydney = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("I'm here..."));
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
