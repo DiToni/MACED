@@ -8,7 +8,17 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 
 public class ScreenLogin extends AppCompatActivity {
 
@@ -18,7 +28,7 @@ public class ScreenLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login_screen);
     }
 
-    public void onClickAnmeldeButton(final View openView){
+    public void onClickAnmeldeButton(final View openView) {
         final GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Patient.class, Patient.instance());
         gsonBuilder.registerTypeAdapter(Stool.class, new Stool());
@@ -26,12 +36,45 @@ public class ScreenLogin extends AppCompatActivity {
         gsonBuilder.registerTypeAdapter(Pain.class, new Pain());
 
         final Gson gson = gsonBuilder.create();
-        String line = "";
 
-        StringBuffer stringBuffer = new StringBuffer();
-        InputStream is = this.getResources().openRawResource(R.raw.res);
-        Intent intent = new Intent(getApplicationContext(), BurgerMenu.class);
+        FileInputStream fis = null;
+        try {
+            fis = openFileInput("serialize.json");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+            text = br.readLine();
 
-        startActivity(intent);
+            System.out.println("1" + text);
+
+            Patient patient = gson.fromJson(text, Patient.class);
+
+            System.out.println(patient);
+            if (patient.getStoolList().isEmpty()) {
+                System.out.println("Liste leer");
+            } else {
+                System.out.println("Liste voll");
+            }
+
+
+        } catch (FileNotFoundException e) {
+            File file = new File("serialize.json");
+            System.out.println("Json File erstellt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            Intent intent = new Intent(getApplicationContext(), StoolList.class);
+
+            startActivity(intent);
+        }
     }
 }
