@@ -5,14 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -70,8 +67,8 @@ public class CreateStool extends AppCompatActivity {
         final Stool stool = new Stool();
         stool.setScore(seekBar.getProgress());
         stool.setCalendar(mcurrentTime);//todo
-        stool.setTime(time.getText().toString());
-        stool.setDate("13.April 2018");
+        //stool.setTime(time.getText().toString());
+        //stool.setDate("13.April 2018");
 
         Patient.instance().addStool(stool);
 
