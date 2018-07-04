@@ -14,6 +14,8 @@
     <string name="title_activity_symptomhinzufuegen">Symptom hinzufügen</string>
     <string name="title_activity_symptomedokumentation">Symptom dokumentieren</string>
 
+    <string name="google_maps_API_key">AIzaSyBxSe7MlqXbsZo7KyO3nUK3trXTNh6zDs</string>
+
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
