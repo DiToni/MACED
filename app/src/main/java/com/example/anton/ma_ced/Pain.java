@@ -18,7 +18,8 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
     private Calendar calendar;//date and time
     private int score;
     private String localization;
-    private String period; // in minutes
+    private String type;
+    private String period;
     private boolean ingestion;  //Nahrungsaufnahme
     private String notes;
 
@@ -62,35 +63,20 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
         this.notes = notes;
     }
 
-    public Calendar getCalendar() {
-        return calendar;
+
+    public String getTime() {
+        return time;
     }
 
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
-    }
-
-    @Override
-    public JsonElement serialize(Pain src, Type typeOfSrc, JsonSerializationContext context) {
-        final JsonObject jsonObject = new JsonObject();
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z", Locale.GERMAN);
-        jsonObject.addProperty("timestamp", simpleDateFormat.format(getCalendar().getTime()));
-
-        jsonObject.addProperty("score", getScore());
-        jsonObject.addProperty("localization", getLocalization());
-        jsonObject.addProperty("notes", getNotes());
-        jsonObject.addProperty("period", getPeriod());
-        jsonObject.addProperty("ingestion", isIngestion());
-
-        return jsonObject;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @Override
     public Pain deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
 
-        final String jsonTimestamp = jsonObject.get("timestamp").getAsString();
+        final String jsonTime = jsonObject.get("time").getAsString();
         final int jsonScore = jsonObject.get("score").getAsInt();
         final String jsonLocalization = jsonObject.get("localization").getAsString();
         final String jsonPeriod = jsonObject.get("period").getAsString();
@@ -99,20 +85,24 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
 
 
         final Pain pain = new Pain();
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z", Locale.GERMAN);
-        try {
-            calendar.setTime(simpleDateFormat.parse(jsonTimestamp));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        pain.setCalendar(calendar);
+        pain.setTime(jsonTime);
         pain.setScore(jsonScore);
         pain.setLocalization(jsonLocalization);
         pain.setPeriod(jsonPeriod);
         pain.setIngestion(jsonIngestion);
         pain.setNotes(jsonNotes);
-
         return pain;
+    }
+
+    @Override
+    public JsonElement serialize(Pain src, Type typeOfSrc, JsonSerializationContext context) {
+        final JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("time", getTime());
+        jsonObject.addProperty("score", getScore());
+        jsonObject.addProperty("localization", getLocalization());
+        jsonObject.addProperty("notes", getNotes());
+        jsonObject.addProperty("period", getPeriod());
+        jsonObject.addProperty("ingestion", isIngestion());
+        return jsonObject;
     }
 }

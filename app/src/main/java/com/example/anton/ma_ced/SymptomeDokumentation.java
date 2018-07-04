@@ -34,10 +34,6 @@ public class SymptomeDokumentation extends AppCompatActivity {
     private int hour = mcurrentTime.get(java.util.Calendar.HOUR_OF_DAY);
     private int minute = mcurrentTime.get(Calendar.MINUTE);
     DecimalFormat df= new DecimalFormat("00");
-    
-    
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +45,7 @@ public class SymptomeDokumentation extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapterSymptom= ArrayAdapter.createFromResource(this, R.array.symptome, android.R.layout.simple_spinner_item);
         adapterSymptom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSymptom.setAdapter(adapterSymptom);
+
 
         //Zeitraum Spinner hinzufuegen
         spinnerSyZeitraum= (Spinner)findViewById(R.id.spinnerSyZeitraum);
@@ -94,8 +91,10 @@ public class SymptomeDokumentation extends AppCompatActivity {
         final Gson gson = gsonBuilder.create();
 
         Symptom symptom = new Symptom();
-        symptom.setCalendar(Calendar.getInstance());//todo: symptom.setTime(time.getText().toString());
-        //symptom.setNote();
+        symptom.setTime(time.getText().toString());
+        if(spinnerSymptom.getSelectedItem()!=null){
+            symptom.setSymptom(spinnerSymptom.getSelectedItem().toString());
+        }
         symptom.setPeriod(spinnerSyZeitraum.getSelectedItem().toString());
         symptom.setSymptom(spinnerSymptom.getSelectedItem().toString());
 
@@ -125,9 +124,9 @@ public class SymptomeDokumentation extends AppCompatActivity {
             }
         }
 
-
-
         Intent intent = new Intent(getApplicationContext(), StoolList.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);//FLAG_ACTIVITY_NEW_TASK: if used to start the root activity of a task, it will bring any currently running instance of that task to the foreground, and then clear it to its root state.
         startActivity(intent);
+        finish();
     }
 }
