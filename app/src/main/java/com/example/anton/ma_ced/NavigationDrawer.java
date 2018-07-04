@@ -73,7 +73,7 @@ public class NavigationDrawer extends AppCompatActivity
         if (id == R.id.nav_pdf_export) {
             // Handle the camera action
         } else if (id == R.id.nav_toilet_finder) {
-            Intent intent = new Intent(getApplicationContext(), ToiletFinder.class);
+            Intent intent = new Intent(getApplicationContext(), toiletfinder2.class);
             startActivity(intent);
         } else if (id == R.id.nav_gamemification) {
 
