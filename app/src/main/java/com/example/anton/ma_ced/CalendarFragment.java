@@ -1,5 +1,6 @@
 package com.example.anton.ma_ced;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,13 +18,13 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class Calendar extends android.support.v4.app.Fragment {
+public class CalendarFragment extends Fragment {
 
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM - yyyy", Locale.getDefault());
     private CompactCalendarView compactCalendarView;
     private TextView textViewCalendarDate;
 
-    public Calendar() {
+    public CalendarFragment() {
         // Required empty public constructor
     }
 
@@ -46,12 +47,13 @@ public class Calendar extends android.support.v4.app.Fragment {
         compactCalendarView.setUseThreeLetterAbbreviation(false);
         compactCalendarView.setFirstDayOfWeek(java.util.Calendar.MONDAY);
         compactCalendarView.setIsRtl(false);
-        compactCalendarView.displayOtherMonthDays(false);
         //compactCalendarView.setIsRtl(true);
 
-        //clear ? compactCalendarView.
-        compactCalendarView.addEvents(Patient.instance().getEventList());//todo: false position
-        //CompactCalendarView.CompactCalendarViewListener
+        //clear compactCalenderView
+        compactCalendarView.removeAllEvents();
+        //load events
+        compactCalendarView.addEvents(Patient.instance().getEventList());
+
         compactCalendarView.invalidate();
 
         // below line will display Sunday as the first day of the week
@@ -76,11 +78,15 @@ public class Calendar extends android.support.v4.app.Fragment {
             public void onDayClick(Date dateClicked) {
                 textViewCalendarDate.setText(dateFormatForMonth.format(dateClicked));
 
+                //todo
                 Intent intent = new Intent(getContext(), StoolList.class);
                 java.util.Calendar calendar = java.util.Calendar.getInstance();
                 calendar.setTime(dateClicked);  //converts date to calendar
                 intent.putExtra("calendar", calendar);   //pass date to StoolList.class
                 startActivity(intent);
+
+                //alternate
+                Patient.instance().setCurrentCalendar(calendar);
             }
 
             @Override

@@ -21,9 +21,16 @@ public class SplashScreen extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
 
-        //exchange thread with creating and loading patient
+        //todo: exchange thread with creating and loading patient
         Patient patient = Patient.instance();
         //seralize
+        //todo: test
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.set(2018, 6, 2);
+        Symptom symptom = new Symptom();
+        symptom.setCalendar(calendar);
+        Patient.instance().addSymptomEvent(symptom);
+        //test ende
 
         Thread myThread = new Thread(){
             @Override
@@ -37,7 +44,7 @@ public class SplashScreen extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), ScreenLogin.class);
                         startActivity(intent);
                   /*  } else {
-                        Intent intent = new Intent(getApplicationContext(), Calendar.class);
+                        Intent intent = new Intent(getApplicationContext(), CalendarFragment.class);
                         startActivity(intent);
                     }
                     */

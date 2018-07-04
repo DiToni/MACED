@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">MA-CED</string>
-    <string name="title_activity_burger_menu">BurgerMenu</string>
+    <string name="title_activity_burger_menu">Monatsübersicht</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Hannes Mertes</string>
+    <string name="nav_header_subtitle">hannes.mertes@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_onboarding_site1">Einstellungen</string>
@@ -137,7 +137,7 @@
         <item>stechend</item>
         <item>dumpf</item>
         <item>bohrend</item>
-        <item>krampgartig</item>
+        <item>krampfartig</item>
         <item>eher diffus</item>
     </string-array>
 

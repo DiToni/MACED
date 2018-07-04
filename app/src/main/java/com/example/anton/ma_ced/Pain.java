@@ -18,7 +18,7 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
     private Calendar calendar;//date and time
     private int score;
     private String localization;
-    private String period; // in minutes
+    private String period;
     private boolean ingestion;  //Nahrungsaufnahme
     private String notes;
 
