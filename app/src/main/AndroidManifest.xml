@@ -58,8 +58,6 @@
         </activity>
         // bis hier
         <activity android:name=".Settings" />
-        <activity android:name=".SecurityScene" />
-        <activity android:name=".ProtectionMechanism" />
         <activity
             android:name=".SchmerzDokumentation"
             android:label="@string/title_activity_schmerzdokumentation" />

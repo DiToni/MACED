@@ -1,6 +1,5 @@
 package com.example.anton.ma_ced;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,10 +19,12 @@ public class Settings extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                /*
                 Intent startIntent = new Intent(getApplicationContext(), SecurityScene.class);
                 //show how to pass information to another activity
                 startIntent.putExtra("com.example.anton.myfirstapp.SOMETHING", "Calculator");
                 startActivity(startIntent);
+                */
             }
         });
 
@@ -32,10 +33,12 @@ public class Settings extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                /*
                 Intent startIntent = new Intent(getApplicationContext(), SecurityScene.class);
                 //show how to pass information to another activity
                 startIntent.putExtra("com.example.anton.myfirstapp.SOMETHING", "Calculator");
                 startActivity(startIntent);
+                */
             }
         });
     }

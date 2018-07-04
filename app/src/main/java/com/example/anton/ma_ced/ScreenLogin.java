@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -29,6 +30,7 @@ public class ScreenLogin extends AppCompatActivity {
         gsonBuilder.registerTypeAdapter(Stool.class, new Stool());
         gsonBuilder.registerTypeAdapter(Symptom.class, new Symptom());
         gsonBuilder.registerTypeAdapter(Pain.class, new Pain());
+        gsonBuilder.registerTypeAdapter(Event.class, new EventSerialiser());
 
         final Gson gson = gsonBuilder.create();
 
