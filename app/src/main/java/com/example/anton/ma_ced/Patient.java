@@ -40,8 +40,8 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
     private ArrayList<Stool> stoolList = new ArrayList<Stool>();
     private ArrayList<Pain> painList = new ArrayList<Pain>();
     private ArrayList<Symptom> symptomList = new ArrayList<Symptom>();
-    private List<Event> eventList = new ArrayList<>(); //as propertie?! observervableList ->load with json
-    Calendar currentCalendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+1"), Locale.GERMANY);
+    private List<MACEDEvent> macedEventList = new ArrayList<>(); //as propertie?! observervableList ->load with json
+    private Calendar currentCalendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+1"), Locale.GERMANY);
 
     public static Patient instance(){
         if (patient == null){
@@ -49,7 +49,6 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         }
         return patient;
     }
-
 
     public ArrayList<Stool> getStoolList() {
         return stoolList;
@@ -145,14 +144,29 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         addSymptomEvent(s);
     }
 
-    public List<Event> getEventList() {
+    public Calendar getCurrentCalendar() {
+        return currentCalendar;
+    }
+
+    public void setCurrentCalendar(Calendar currentCalendar) {
+        this.currentCalendar = currentCalendar;
+    }
+
+    public List<MACEDEvent> getMACEDEventList() {
+        return macedEventList;
+    }
+
+    public List<Event> getEventList(){
+        List<Event> eventList = new ArrayList<>();
+        for(MACEDEvent macedEvent : macedEventList){
+            eventList.add(macedEvent);
+        }
         return eventList;
     }
 
-    public void setEventList(List<Event> eventList) {
-        this.eventList = eventList;
+    public void setMACEDEventList(List<MACEDEvent> eventList) {
+        this.macedEventList = eventList;
     }
-
 
     /**
      *
@@ -160,7 +174,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
      */
     public void addStoolEvent(Stool stool){//todo: by adding a new event, add event to compactcalenderview
         int blueColor = Color.argb(255, 0, 0, 255);
-        eventList.add(new Event(blueColor, computeTimeInMillis(stool.getCalendar()), stool));
+        macedEventList.add(new MACEDEvent(blueColor, computeTimeInMillis(stool.getCalendar()), stool));
     }
 
     /**
@@ -169,7 +183,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
      */
     public void addPainEvent(Pain pain){
         int greenColor = Color.argb(255, 0, 0, 255);
-        eventList.add(new Event(greenColor, computeTimeInMillis(pain.getCalendar()), pain));
+        macedEventList.add(new MACEDEvent(greenColor, computeTimeInMillis(pain.getCalendar()), pain));
     }
 
     /**
@@ -178,7 +192,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
      */
     public void addSymptomEvent(Symptom symptom){
         int redColor = Color.argb(255, 255, 0, 0);
-        eventList.add(new Event(redColor, computeTimeInMillis(symptom.getCalendar()), symptom));
+        macedEventList.add(new MACEDEvent(redColor, computeTimeInMillis(symptom.getCalendar()), symptom));
     }
 
     /**
@@ -187,8 +201,8 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
      * @return
      */
     private long computeTimeInMillis(Calendar calendar){
-        currentCalendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),  calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
-        return currentCalendar.getTimeInMillis();
+        getCurrentCalendar().set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),  calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
+        return getCurrentCalendar().getTimeInMillis();
     }
 
 
