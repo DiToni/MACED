@@ -177,8 +177,8 @@ public class SchmerzDokumentation extends AppCompatActivity {
             p.setPeriod(spinnerZeitraum.getSelectedItem().toString());
         }
 
-        p.setIngestion(checkBox2.isActivated());
-        if(checkBox2.isActivated() && nahrung.getEditText()!=null){
+        p.setIngestion(checkBox2.isChecked());
+        if(checkBox2.isChecked() && nahrung.getEditText()!=null){
             p.setNotes(nahrung.getEditText().toString());
         }else{
             p.setNotes("");
