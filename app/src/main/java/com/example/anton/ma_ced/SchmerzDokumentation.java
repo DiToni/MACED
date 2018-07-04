@@ -147,7 +147,7 @@ public class SchmerzDokumentation extends AppCompatActivity {
         });
 
         //Checkbox
-        checkBox = (CheckBox) findViewById(R.id.checkBox2);
+        checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
         nahrung= (TextInputLayout)findViewById(R.id.nahrung);
         ok=(Button)findViewById(R.id.buttonOK);
 
