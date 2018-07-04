@@ -30,10 +30,17 @@ public class SymptomeDokumentation extends AppCompatActivity {
 
     //TimePicker
     private EditText time;
-    java.util.Calendar mcurrentTime = java.util.Calendar.getInstance();
+    Calendar mcurrentTime = Calendar.getInstance();
     private int hour = mcurrentTime.get(java.util.Calendar.HOUR_OF_DAY);
     private int minute = mcurrentTime.get(Calendar.MINUTE);
+    private int year= Patient.instance().getCurrentCalendar().get(Calendar.YEAR);
+    private int month=Patient.instance().getCurrentCalendar().get(Calendar.MONTH);
+    private int date= Patient.instance().getCurrentCalendar().get(Calendar.DATE);
     DecimalFormat df= new DecimalFormat("00");
+
+    java.util.Calendar zeit=  java.util.Calendar.getInstance();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,7 @@ public class SymptomeDokumentation extends AppCompatActivity {
         //TimePicker
         time = (EditText) findViewById(R.id.symptomtime);
         time.setText(df.format(hour) + ":" + df.format(minute));
+        zeit.set(year, month, date, hour, minute);
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +72,7 @@ public class SymptomeDokumentation extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         time.setText(df.format(selectedHour) + ":" + df.format(selectedMinute));
+                        zeit.set(year, month, date, selectedHour, selectedMinute);
                     }
                 }, hour, minute, true);
                 mTimePicker.setTitle("Uhrzeit auswählen");
@@ -91,7 +100,8 @@ public class SymptomeDokumentation extends AppCompatActivity {
         final Gson gson = gsonBuilder.create();
 
         Symptom symptom = new Symptom();
-        symptom.setTime(time.getText().toString());
+
+        symptom.setCalendar(zeit);
         if(spinnerSymptom.getSelectedItem()!=null){
             symptom.setSymptom(spinnerSymptom.getSelectedItem().toString());
         }

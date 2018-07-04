@@ -42,10 +42,14 @@ public class SchmerzDokumentation extends AppCompatActivity {
 
     //TimePicker
     private EditText time;
-    java.util.Calendar mcurrentTime = java.util.Calendar.getInstance();
+    Calendar mcurrentTime = Calendar.getInstance();
     private int hour = mcurrentTime.get(java.util.Calendar.HOUR_OF_DAY);
     private int minute = mcurrentTime.get(Calendar.MINUTE);
+    private int year= Patient.instance().getCurrentCalendar().get(Calendar.YEAR);
+    private int month=Patient.instance().getCurrentCalendar().get(Calendar.MONTH);
+    private int date= Patient.instance().getCurrentCalendar().get(Calendar.DATE);
     DecimalFormat df= new DecimalFormat("00");
+    java.util.Calendar zeit=  java.util.Calendar.getInstance();
 
     //Checkbox
     private CheckBox checkBox;
@@ -124,6 +128,7 @@ public class SchmerzDokumentation extends AppCompatActivity {
         //TimePicker
         time = (EditText) findViewById(R.id.schmerztime);
         time.setText(df.format(hour) + ":" + df.format(minute));
+        zeit.set(year, month, date, hour, minute);
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,6 +137,7 @@ public class SchmerzDokumentation extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         time.setText(df.format(selectedHour) + ":" + df.format(selectedMinute));
+                        zeit.set(year, month, date, selectedHour, selectedMinute);
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Uhrzeit auswählen");
@@ -144,34 +150,9 @@ public class SchmerzDokumentation extends AppCompatActivity {
         checkBox = (CheckBox) findViewById(R.id.checkBox2);
         nahrung= (TextInputEditText)findViewById(R.id.nahrung);
         ok=(Button)findViewById(R.id.buttonOK);
-        ok.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View w){
-                Pain p= new Pain();
-                p.setScore(Integer.parseInt(skala.getText().toString()));
-                if(spinnerLokalisation!=null){
-                    p.setLocalization(spinnerLokalisation.getSelectedItem().toString());
-                }
 
-                if(spinnerArt!=null){
-                    p.setType(spinnerArt.getSelectedItem().toString());
-                }
 
-                if(spinnerZeitraum!=null){
-                    p.setPeriod(spinnerZeitraum.getSelectedItem().toString());
-                }
 
-                p.setIngestion(checkBox2.isActivated());
-                if(checkBox2.isActivated() && nahrung.getText()!=null){
-                    p.setNotes(nahrung.getText().toString());
-                }else{
-                    p.setNotes("");
-                }
-
-                p.setTime(time.getText().toString());
-
-                //NOCH HINZUFUEGEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            }
-        });
     }
 
     public void onClickButtonWeiter(final View openView){
@@ -203,7 +184,7 @@ public class SchmerzDokumentation extends AppCompatActivity {
             p.setNotes("");
         }
 
-        p.setTime(time.getText().toString());
+        p.setCalendar(zeit);
 
         Patient.instance().addPain(p);
 

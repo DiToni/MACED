@@ -19,7 +19,7 @@ public class toiletfinder2 extends FragmentActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toiletfinder2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        setUpMapIfNeeded();
+       // setUpMapIfNeeded();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

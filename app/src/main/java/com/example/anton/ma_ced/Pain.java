@@ -21,6 +21,7 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
     private String period;
     private boolean ingestion;  //Nahrungsaufnahme
     private String notes;
+    private String type;    //Art der Schmerzes
 
     public int getScore() {
         return score;
@@ -70,6 +71,14 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
         this.calendar = calendar;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public JsonElement serialize(Pain src, Type typeOfSrc, JsonSerializationContext context) {
         final JsonObject jsonObject = new JsonObject();
@@ -82,6 +91,7 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
         jsonObject.addProperty("notes", getNotes());
         jsonObject.addProperty("period", getPeriod());
         jsonObject.addProperty("ingestion", isIngestion());
+        jsonObject.addProperty("type", getType());
 
         return jsonObject;
     }
@@ -96,6 +106,7 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
         final String jsonPeriod = jsonObject.get("period").getAsString();
         final boolean jsonIngestion = jsonObject.get("ingestion").getAsBoolean();
         final String jsonNotes = jsonObject.get("notes").getAsString();
+        final String jsonType=jsonObject.get("type").getAsString();
 
 
         final Pain pain = new Pain();
@@ -112,6 +123,7 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
         pain.setPeriod(jsonPeriod);
         pain.setIngestion(jsonIngestion);
         pain.setNotes(jsonNotes);
+        pain.setType(jsonType);
 
         return pain;
     }

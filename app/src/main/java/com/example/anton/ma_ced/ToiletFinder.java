@@ -1,11 +1,19 @@
 package com.example.anton.ma_ced;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,10 +29,34 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
     private Location mLocation;
     double latitude, longitude;
 
+
     //dritter Versuch
     private LocationManager locationManager;
     private LocationListener locationListener;
 
+
+    //neuer Versuch
+    private static final int REQUEST_CODE = 1000;
+
+    FusedLocationProviderClient fusedLocationProviderClient;
+    LocationRequest locationRequest;
+    LocationCallback locationCallback;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_CODE: {
+                if(grantResults.length >0 ){
+                    if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    } else if(grantResults[0] == PackageManager.PERMISSION_DENIED) {
+
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +66,9 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
         gpsTracker = new GPSTracker(getApplicationContext());
         mLocation = gpsTracker.getLocation();
 
-        //latitude = mLocation.getLatitude();
-        //longitude = mLocation.getLongitude();
-
-        /*
+     /*   latitude = mLocation.getLatitude();
+        longitude = mLocation.getLongitude();
+*//*
         //dritter Versuch
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -83,10 +114,43 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
         }
 
 */
+
+
+        //neuer Versuch
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+        } else {
+            //if permission is granted
+            buildLocationRequest();
+            buildLocationCallBack();
+        }
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_toilet_finder);
         mapFragment.getMapAsync(this);
+    }
+
+    private void buildLocationCallBack() {
+        locationCallback = new LocationCallback(){
+        //Ctrl+0
+          public void onLocationResult(LocationResult locationResult) {
+              for(Location location:locationResult.getLocations()) {
+                  latitude = location.getLatitude();
+                  longitude = location.getLongitude();
+
+              }
+          }
+        };
+
+    }
+
+    private void buildLocationRequest() {
+        locationRequest = new LocationRequest();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(1000);
+        locationRequest.setFastestInterval(3000);
+        locationRequest.setSmallestDisplacement(10);
     }
 /*
     @Override
@@ -117,7 +181,7 @@ public class ToiletFinder extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         //  LatLng sydney = new LatLng(-34, 151);
 
-        LatLng sydney = new LatLng(mLocation.getLatitude(), mLocation.getLongitude());
+        LatLng sydney = new LatLng(latitude, longitude);
         mMap.addMarker(new MarkerOptions().position(sydney).title("I'm here..."));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
