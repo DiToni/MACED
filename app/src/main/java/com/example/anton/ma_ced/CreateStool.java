@@ -97,9 +97,6 @@ public class CreateStool extends AppCompatActivity {
             }
         }
 
-
-
-
         Intent intent = new Intent(getApplicationContext(), StoolList.class);
         startActivity(intent);
     }

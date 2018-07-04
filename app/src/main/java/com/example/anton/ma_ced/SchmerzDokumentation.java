@@ -231,10 +231,10 @@ public class SchmerzDokumentation extends AppCompatActivity {
             }
         }
 
-
-
         Intent intent = new Intent(getApplicationContext(), StoolList.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);//FLAG_ACTIVITY_NEW_TASK: if used to start the root activity of a task, it will bring any currently running instance of that task to the foreground, and then clear it to its root state.
         startActivity(intent);
+        finish();
 
     }
 }
