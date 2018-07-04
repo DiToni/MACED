@@ -8,11 +8,10 @@
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/compactcalendar_view"
         android:layout_width="match_parent"
-        android:layout_height="266dp"
+        android:layout_height="255dp"
         android:layout_alignParentBottom="true"
 
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="87dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:compactCalendarBackgroundColor="#fff"
@@ -29,7 +28,6 @@
         android:layout_height="32dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="84dp"
         android:text="Januar - 2000"
         android:textColor="@color/colorAccent"
         android:textSize="24sp" />

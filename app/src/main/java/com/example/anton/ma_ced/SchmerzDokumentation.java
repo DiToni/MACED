@@ -3,17 +3,17 @@ package com.example.anton.ma_ced;
 import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -58,7 +58,7 @@ public class SchmerzDokumentation extends AppCompatActivity {
     private CheckBox checkBox2;
 
     //Notizen zur Nahrungsaufnahme
-    private TextInputEditText nahrung;
+    private TextInputLayout nahrung;
 
     //Schmerz erstellen
     private Button ok;
@@ -148,7 +148,7 @@ public class SchmerzDokumentation extends AppCompatActivity {
 
         //Checkbox
         checkBox = (CheckBox) findViewById(R.id.checkBox2);
-        nahrung= (TextInputEditText)findViewById(R.id.nahrung);
+        nahrung= (TextInputLayout)findViewById(R.id.nahrung);
         ok=(Button)findViewById(R.id.buttonOK);
 
 
@@ -178,8 +178,8 @@ public class SchmerzDokumentation extends AppCompatActivity {
         }
 
         p.setIngestion(checkBox2.isActivated());
-        if(checkBox2.isActivated() && nahrung.getText()!=null){
-            p.setNotes(nahrung.getText().toString());
+        if(checkBox2.isActivated() && nahrung.getEditText()!=null){
+            p.setNotes(nahrung.getEditText().toString());
         }else{
             p.setNotes("");
         }

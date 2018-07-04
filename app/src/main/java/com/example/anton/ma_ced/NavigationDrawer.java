@@ -2,10 +2,10 @@ package com.example.anton.ma_ced;
 
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
 public class NavigationDrawer extends AppCompatActivity
@@ -91,17 +90,5 @@ public class NavigationDrawer extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void onClickFloatingActionButton(View view){
-        //todo:Test
-        java.util.Calendar calendar = java.util.Calendar.getInstance();
-        calendar.set(2018, 6, 2);
-
-        calendar = Patient.instance().getCurrentCalendar();//alternate
-
-        Symptom symptom = new Symptom();
-        symptom.setCalendar(calendar);
-        Patient.instance().addSymptomEvent(symptom);
     }
 }

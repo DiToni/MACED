@@ -184,7 +184,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="62dp">
 
-        <android.support.design.widget.TextInputEditText
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/nahrung" />

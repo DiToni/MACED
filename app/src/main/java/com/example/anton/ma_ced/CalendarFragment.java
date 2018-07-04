@@ -30,7 +30,8 @@ public class CalendarFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(
+                savedInstanceState);
     }
 
     @Override
@@ -82,11 +83,9 @@ public class CalendarFragment extends Fragment {
                 Intent intent = new Intent(getContext(), StoolList.class);
                 java.util.Calendar calendar = java.util.Calendar.getInstance();
                 calendar.setTime(dateClicked);  //converts date to calendar
-                intent.putExtra("calendar", calendar);   //pass date to StoolList.class
+                //intent.putExtra("calendar", calendar);   //pass date to StoolList.class
+                Patient.instance().setCurrentCalendar(calendar);//alternate to putExtra
                 startActivity(intent);
-
-                //alternate
-                Patient.instance().setCurrentCalendar(calendar);
             }
 
             @Override
@@ -121,5 +120,10 @@ public class CalendarFragment extends Fragment {
         textViewCalendarDate.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
         // Set to current day on resume to set calendar to latest day
         // toolbar.setTitle(dateFormatForMonth.format(new Date()));
+
+        //clear compactCalenderView
+        compactCalendarView.removeAllEvents();
+        //load events
+        compactCalendarView.addEvents(Patient.instance().getEventList());
     }
 }

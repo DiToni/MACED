@@ -193,7 +193,8 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
      * @return
      */
     private long computeTimeInMillis(Calendar calendar){
-        getCurrentCalendar().set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),  calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
+        Calendar currentCalendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+1"), Locale.GERMANY);
+        currentCalendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),  calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
         return getCurrentCalendar().getTimeInMillis();
     }
 

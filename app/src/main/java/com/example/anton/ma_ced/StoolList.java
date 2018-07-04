@@ -24,7 +24,7 @@ public class StoolList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stool_list);
 
-        java.util.Calendar calendar = (java.util.Calendar) getIntent().getExtras().get("calendar");//todo: receive date from CalendarFragment.class
+        //java.util.Calendar calendar = (java.util.Calendar) getIntent().getExtras().get("calendar");//receive date from CalendarFragment.class -> solution with calendar attribute in patient
 
         mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
         mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
