@@ -49,7 +49,6 @@ public class SchmerzDokumentation extends AppCompatActivity {
     private int month=Patient.instance().getCurrentCalendar().get(Calendar.MONTH);
     private int date= Patient.instance().getCurrentCalendar().get(Calendar.DATE);
     DecimalFormat df= new DecimalFormat("00");
-    TimePickerDialog mTimePicker;
     java.util.Calendar zeit=  java.util.Calendar.getInstance();
 
     //Checkbox
