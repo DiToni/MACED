@@ -10,7 +10,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -34,11 +33,7 @@ public class ScreenLogin extends AppCompatActivity {
 
         final Gson gson = gsonBuilder.create();
 
-        //try(Reader reader = new InputStreamReader(new FileInputStream(new File("serialize.json")),"UTF-8")){
-
-        //}
-
-        File file = new File("serialize.json");
+        //File file = new File("serialize.json");
 
         FileInputStream fis = null;
         try {
@@ -51,20 +46,7 @@ public class ScreenLogin extends AppCompatActivity {
             String text;
             text = br.readLine();
 
-            System.out.println("1" + text);//test
-
             Patient patient = gson.fromJson(text, Patient.class);
-
-          //test
-            System.out.println(patient);
-
-            //todo:test
-            String testString = "test:";
-            for (Stool e: Patient.instance().getStoolList()             ) {
-                testString += e.toString();
-            }
-            System.out.println(testString);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
