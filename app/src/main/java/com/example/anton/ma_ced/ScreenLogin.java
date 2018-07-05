@@ -5,15 +5,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 
 public class ScreenLogin extends AppCompatActivity {
 
@@ -33,12 +38,8 @@ public class ScreenLogin extends AppCompatActivity {
 
         final Gson gson = gsonBuilder.create();
 
-        //File file = new File("serialize.json");
-
         FileInputStream fis = null;
         try {
-            //if(!file.exists())
-            //    file.createNewFile();//creates file if not exists
             fis = openFileInput("serialize.json");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
@@ -46,9 +47,21 @@ public class ScreenLogin extends AppCompatActivity {
             String text;
             text = br.readLine();
 
+            System.out.println("1" + text);
+
             Patient patient = gson.fromJson(text, Patient.class);
+
+            System.out.println(patient);
+            if (patient.getStoolList().isEmpty()) {
+                System.out.println("Liste leer");
+            } else {
+                System.out.println("Liste voll");
+            }
+
+
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            File file = new File("serialize.json");
+            System.out.println("Json File erstellt");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

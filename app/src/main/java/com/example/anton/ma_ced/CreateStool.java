@@ -74,6 +74,7 @@ public class CreateStool extends AppCompatActivity {
         //stool.setTime(time.getText().toString());
         //stool.setDate("13.April 2018");
 
+
         Patient.instance().addStool(stool);
 
 
