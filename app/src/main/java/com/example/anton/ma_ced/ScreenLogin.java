@@ -46,12 +46,13 @@ public class ScreenLogin extends AppCompatActivity {
             String text;
             text = br.readLine();
 
-            System.out.println("1" + text);
+            System.out.println("1" + text);//test
 
-            Patient patient = gson.fromJson(text, Patient.class);
+            Patient patient = gson.fromJson(text, Patient.class);//wird die patient singleton instance hier gesetzt?!
 
+          //test
             System.out.println(patient);
-            if (patient.getStoolList().isEmpty()) {
+            if (patient.getEventList().isEmpty()) {
                 System.out.println("Liste leer");
             } else {
                 System.out.println("Liste voll");

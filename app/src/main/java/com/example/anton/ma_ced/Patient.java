@@ -166,7 +166,10 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
      */
     public void addStoolEvent(Stool stool){//todo: by adding a new event, add event to compactcalenderview
         int blueColor = Color.argb(255, 0, 0, 255);
-        eventList.add(new Event(blueColor, computeTimeInMillis(stool.getCalendar()), stool));
+        Event stoolEvent = new Event(blueColor, computeTimeInMillis(stool.getCalendar()));
+        if(!eventList.contains(stoolEvent)) {
+            eventList.add(stoolEvent);
+        }
     }
 
     /**
@@ -174,8 +177,11 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
      * @param pain
      */
     public void addPainEvent(Pain pain){
-        int greenColor = Color.argb(255, 0, 0, 255);
-        eventList.add(new Event(greenColor, computeTimeInMillis(pain.getCalendar()), pain));
+        int greenColor = Color.argb(255, 0, 255, 0);
+        Event painEvent = new Event(greenColor, computeTimeInMillis(pain.getCalendar()));
+        if(!eventList.contains(painEvent)) {
+            eventList.add(painEvent);
+        }
     }
 
     /**
@@ -183,8 +189,11 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
      * @param symptom
      */
     public void addSymptomEvent(Symptom symptom){
-        int redColor = Color.argb(255, 255, 0, 0);
-        eventList.add(new Event(redColor, computeTimeInMillis(symptom.getCalendar()), symptom));
+        int blackColor = Color.argb(255, 0, 0, 0);
+        Event symptomEvent = new Event(blackColor, computeTimeInMillis(symptom.getCalendar()));
+        if(!eventList.contains(symptomEvent)) {
+            eventList.add(symptomEvent);
+        }
     }
 
     /**
@@ -194,7 +203,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
      */
     private long computeTimeInMillis(Calendar calendar){
         Calendar currentCalendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+1"), Locale.GERMANY);
-        currentCalendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),  calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
+        currentCalendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),  calendar.get(Calendar.DAY_OF_MONTH));
         return getCurrentCalendar().getTimeInMillis();
     }
 
