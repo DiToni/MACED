@@ -11,6 +11,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -47,6 +48,11 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         if (patient == null){
             patient = new Patient();
         }
+        return patient;
+    }
+
+    public static Patient instance(Patient patient){
+        Patient.patient = patient;
         return patient;
     }
 
@@ -216,9 +222,9 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
         /*jsonObject.addProperty("givenname", instance().getVorname());
         jsonObject.addProperty("surname", instance().getNachname());
         jsonObject.addProperty("height", instance().getHeight());
-        jsonObject.addProperty("weight", instance().getWeight());*/
+        jsonObject.addProperty("weight", instance().getWeight());
         jsonObject.addProperty("pin", instance().getPin());
-        jsonObject.addProperty("password", instance().getPassword());
+        jsonObject.addProperty("password", instance().getPassword());*/
 
         final JsonElement jsonElementStool = context.serialize(instance().getStoolList());
         jsonObject.add("stool", jsonElementStool);
@@ -242,22 +248,21 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
        /*final String jsonGivenname = jsonObject.get("givenname").getAsString();
        final String jsonSurname = jsonObject.get("surname").getAsString();
        final int jsonHeight = jsonObject.get("height").getAsInt();
-       final int jsonWeight = jsonObject.get("weight").getAsInt();*/
+       final int jsonWeight = jsonObject.get("weight").getAsInt();
        final int jsonPin = jsonObject.get("pin").getAsInt();
-       final String jsonPassword = jsonObject.get("password").getAsString();
+       final String jsonPassword = jsonObject.get("password").getAsString();*/
 
-       stoolList  = context.deserialize(jsonObject.get("stool"), stoolList.getClass());
-       painList = context.deserialize(jsonObject.get("pain"), painList.getClass());
-       symptomList = context.deserialize(jsonObject.get("symptom"), symptomList.getClass());
-       eventList = context.deserialize(jsonObject.get("event"), eventList.getClass());
+       stoolList  = context.deserialize(jsonObject.get("stool"), new TypeToken<List<Stool>>(){}.getType());
+       painList = context.deserialize(jsonObject.get("pain"), new TypeToken<List<Pain>>(){}.getType());
+       symptomList = context.deserialize(jsonObject.get("symptom"), new TypeToken<List<Symptom>>(){}.getType());
+       eventList = context.deserialize(jsonObject.get("event"), new TypeToken<List<Event>>(){}.getType());
 
        /*instance().setWeight(jsonWeight);
        instance().setHeight(jsonHeight);
        instance().setVorname(jsonGivenname);
-       instance().setNachname(jsonSurname);*/
+       instance().setNachname(jsonSurname);
        instance().setPin(jsonPin);
-       instance().setPassword(jsonPassword);
-
+       instance().setPassword(jsonPassword);*/
 
         return instance();
     }

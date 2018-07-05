@@ -19,6 +19,7 @@ public class EventSerialiser implements JsonSerializer<Event>, JsonDeserializer<
 
         final int color = jsonObject.get("color").getAsInt();
         final long timeInMillis = jsonObject.get("timeInMillis").getAsLong();
+        System.out.println(jsonObject.get("timeInMillis").getAsString());
         //final Object data = jsonObject.get("data").getAsString(); //data won't be serialized
 
         return new Event(color, timeInMillis);

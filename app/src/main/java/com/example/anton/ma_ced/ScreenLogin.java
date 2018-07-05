@@ -34,11 +34,16 @@ public class ScreenLogin extends AppCompatActivity {
 
         final Gson gson = gsonBuilder.create();
 
+        //try(Reader reader = new InputStreamReader(new FileInputStream(new File("serialize.json")),"UTF-8")){
+
+        //}
+
         File file = new File("serialize.json");
 
         FileInputStream fis = null;
         try {
-            file.createNewFile();//creates file if not exists
+            //if(!file.exists())
+            //    file.createNewFile();//creates file if not exists
             fis = openFileInput("serialize.json");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
@@ -48,16 +53,17 @@ public class ScreenLogin extends AppCompatActivity {
 
             System.out.println("1" + text);//test
 
-            Patient patient = gson.fromJson(text, Patient.class);//wird die patient singleton instance hier gesetzt?!
+            Patient patient = gson.fromJson(text, Patient.class);
 
           //test
             System.out.println(patient);
-            if (patient.getEventList().isEmpty()) {
-                System.out.println("Liste leer");
-            } else {
-                System.out.println("Liste voll");
-            }
 
+            //todo:test
+            String testString = "test:";
+            for (Stool e: Patient.instance().getStoolList()             ) {
+                testString += e.toString();
+            }
+            System.out.println(testString);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -76,5 +82,6 @@ public class ScreenLogin extends AppCompatActivity {
 
             startActivity(intent);
         }
+
     }
 }
