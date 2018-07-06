@@ -3,6 +3,7 @@ package com.example.anton.ma_ced;
 import android.graphics.Color;
 
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -31,11 +32,11 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
     @SerializedName("height")
     private int height; // in cm
     @SerializedName("weight")
-    private double weight; // in kg*/
+    private double weight; // in kg
     @SerializedName("pin")
     private int pin;
     @SerializedName("password")
-    private String password;
+    private String password;*/
     private static Patient patient;
 
     private ArrayList<Stool> stoolList = new ArrayList<Stool>();
@@ -118,7 +119,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
 
     public void setWeight(double weight) {
         this.weight = weight;
-    }*/
+    }
 
     public int getPin() {
         return pin;
@@ -134,7 +135,7 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
 
     public void setPassword(String password) {
         this.password = password;
-    }
+    }*/
 
 
     public void addStool(Stool s){
@@ -168,6 +169,11 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
 
     /**
      *
+     * @param year
+     * @param month 0 = january
+     * @param day
+     * @param hour
+     * @param minute
      * @param stool
      */
     public void addStoolEvent(Stool stool){//todo: by adding a new event, add event to compactcalenderview
@@ -246,16 +252,15 @@ public class Patient implements JsonSerializer<Patient>, JsonDeserializer<Patien
        final JsonObject jsonObject = json.getAsJsonObject();
 
        /*final String jsonGivenname = jsonObject.get("givenname").getAsString();
-       final String jsonSurname = jsonObject.get("surname").getAsString();
+       final String jsonSurname = jsonObject.get("surname").getAsString();*/
        final int jsonHeight = jsonObject.get("height").getAsInt();
        final int jsonWeight = jsonObject.get("weight").getAsInt();
        final int jsonPin = jsonObject.get("pin").getAsInt();
-       final String jsonPassword = jsonObject.get("password").getAsString();*/
+       final String jsonPassword = jsonObject.get("password").getAsString();
 
-       stoolList  = context.deserialize(jsonObject.get("stool"), new TypeToken<List<Stool>>(){}.getType());
-       painList = context.deserialize(jsonObject.get("pain"), new TypeToken<List<Pain>>(){}.getType());
-       symptomList = context.deserialize(jsonObject.get("symptom"), new TypeToken<List<Symptom>>(){}.getType());
-       eventList = context.deserialize(jsonObject.get("event"), new TypeToken<List<Event>>(){}.getType());
+       stoolList  = context.deserialize(jsonObject.get("stool"), stoolList.getClass());
+       painList = context.deserialize(jsonObject.get("pain"), painList.getClass());
+       symptomList = context.deserialize(jsonObject.get("symptom"), symptomList.getClass());
 
        /*instance().setWeight(jsonWeight);
        instance().setHeight(jsonHeight);
