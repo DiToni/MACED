@@ -9,9 +9,7 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class Stool implements JsonSerializer<Stool>, JsonDeserializer<Stool> {
     private int score;
@@ -40,8 +38,8 @@ public class Stool implements JsonSerializer<Stool>, JsonDeserializer<Stool> {
 
         jsonObject.addProperty("score", getScore());
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z", Locale.GERMAN);
-        jsonObject.addProperty("timestamp", simpleDateFormat.format(getCalendar().getTime()));
+        final JsonElement calendar = context.serialize(getCalendar());
+        jsonObject.add("calendar", calendar);
 
         return jsonObject;
     }
@@ -51,7 +49,7 @@ public class Stool implements JsonSerializer<Stool>, JsonDeserializer<Stool> {
         final JsonObject jsonObject = json.getAsJsonObject();
 
         final int jsonScore = jsonObject.get("score").getAsInt();
-        final Calendar calendar = context.deserialize(jsonObject.get("timestamp"), Calendar.class);
+        calendar  = context.deserialize(jsonObject.get("calendar"), Calendar.class);
 
         Stool stool = new Stool();
         stool.setScore(jsonScore);

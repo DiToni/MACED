@@ -9,9 +9,7 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
     private Calendar calendar;//date and time
@@ -82,8 +80,8 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
     public JsonElement serialize(Pain src, Type typeOfSrc, JsonSerializationContext context) {
         final JsonObject jsonObject = new JsonObject();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z", Locale.GERMAN);
-        jsonObject.addProperty("timestamp", simpleDateFormat.format(getCalendar().getTime()));
+        final JsonElement calendar = context.serialize(getCalendar());
+        jsonObject.add("calendar", calendar);
 
         jsonObject.addProperty("score", getScore());
         jsonObject.addProperty("localization", getLocalization());
@@ -99,7 +97,7 @@ public class Pain implements JsonSerializer<Pain>, JsonDeserializer<Pain> {
     public Pain deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
 
-        final Calendar calendar = context.deserialize(jsonObject.get("timestamp"), Calendar.class);
+        calendar  = context.deserialize(jsonObject.get("calendar"), Calendar.class);
         final int jsonScore = jsonObject.get("score").getAsInt();
         final String jsonLocalization = jsonObject.get("localization").getAsString();
         final String jsonPeriod = jsonObject.get("period").getAsString();

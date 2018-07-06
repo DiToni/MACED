@@ -9,9 +9,7 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class Symptom implements JsonSerializer<Symptom>, JsonDeserializer<Symptom>{
     private Calendar calendar;
@@ -59,8 +57,9 @@ public class Symptom implements JsonSerializer<Symptom>, JsonDeserializer<Sympto
     public JsonElement serialize(Symptom src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject jsonObject = new JsonObject();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z", Locale.GERMAN);
-        jsonObject.addProperty("timestamp", simpleDateFormat.format(getCalendar().getTime()));
+        final JsonElement calendar = context.serialize(getCalendar());
+        jsonObject.add("calendar", calendar);
+
         jsonObject.addProperty("period", getPeriod());
         jsonObject.addProperty("symptom", getSymptom());
         //jsonObject.addProperty("note", getNote());
@@ -72,7 +71,7 @@ public class Symptom implements JsonSerializer<Symptom>, JsonDeserializer<Sympto
     public Symptom deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
 
-        final Calendar calendar = context.deserialize(jsonObject.get("timestamp"), Calendar.class);
+        calendar  = context.deserialize(jsonObject.get("calendar"), Calendar.class);
         final String jsonSymptom = jsonObject.get("symptom").getAsString();
         final String jsonPeriod = jsonObject.get("period").getAsString();
         //final String jsonNote = jsonObject.get("note").getAsString();

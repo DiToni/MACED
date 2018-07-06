@@ -1,9 +1,7 @@
 package com.example.anton.ma_ced;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,17 +45,10 @@ class PainAdapter extends RecyclerView.Adapter<PainAdapter.View_Holder> {
                 String s = painList.get(position).getCalendar().getTime().toString();
                 int s1 = painList.get(position).getScore();
 
-
                 holder.title.setText(s);
                 holder.description.setText(String.valueOf(s1));
             }
-        System.out.println(position);
-            }
-
-
-
-
-
+    }
 
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
