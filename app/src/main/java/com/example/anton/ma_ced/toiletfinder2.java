@@ -12,8 +12,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -42,6 +46,8 @@ public class toiletfinder2 extends FragmentActivity implements OnMapReadyCallbac
 
     //widgets
     private EditText mSearchText;
+    private ImageView mGps;
+
     //vars
     private Boolean mLocationPermissionGranted = false;
     private GoogleMap mMap;
@@ -83,6 +89,7 @@ public class toiletfinder2 extends FragmentActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toiletfinder2);
         mSearchText = (EditText) findViewById(R.id.input_search);
+        mGps = (ImageView) findViewById(R.id.ic_gps);
 
         getLocationPermission();
 
@@ -110,6 +117,16 @@ public class toiletfinder2 extends FragmentActivity implements OnMapReadyCallbac
                 return false;
             }
         });
+
+        mGps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick clicked gps icon");
+                getDeviceLocation();
+            }
+        });
+
+        hideSoftKeyboard();
     }
 //searchstring wechseln
     private void geoLocate() {
@@ -133,6 +150,8 @@ public class toiletfinder2 extends FragmentActivity implements OnMapReadyCallbac
 
             //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
 
+            moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM, address.getAddressLine(0));
+
         }
     }
 
@@ -152,7 +171,7 @@ public class toiletfinder2 extends FragmentActivity implements OnMapReadyCallbac
                             Location currentLocation = (Location) task.getResult();
 
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-                                    DEFAULT_ZOOM);
+                                    DEFAULT_ZOOM, "My Location");
 
                         } else {
                             Log.d(TAG, "onComplete: found location is null!");
@@ -165,10 +184,26 @@ public class toiletfinder2 extends FragmentActivity implements OnMapReadyCallbac
             Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage());
         }
     }
-
-    private void moveCamera(LatLng latLng, float zoom) {
+/*
+Das ausßerhalb der if anweisung setzen
+MarkerOptions options = new MarkerOptions()
+                    .position(latLng)
+                    .title(title);
+            mMap.addMarker(options);
+ */
+    private void moveCamera(LatLng latLng, float zoom, String title) {
         Log.d(TAG, "moveCamera: moving the camera to: lat: "+ latLng.latitude + "lng: " + latLng.longitude  );
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+
+        if(!title.equals("My Location")){
+            MarkerOptions options = new MarkerOptions()
+                    .position(latLng)
+                    .title(title);
+            mMap.addMarker(options);
+        }
+
+
+        hideSoftKeyboard();
     }
 
     private void initMap() {
@@ -212,5 +247,9 @@ public class toiletfinder2 extends FragmentActivity implements OnMapReadyCallbac
                 }
             }
         }
+    }
+
+    private void hideSoftKeyboard() {
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 }
