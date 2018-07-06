@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
-import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,8 +23,6 @@ public class CalendarFragment extends Fragment {
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM - yyyy", Locale.getDefault());
     private CompactCalendarView compactCalendarView;
     private TextView textViewCalendarDate;
-    private TextView testTextView;
-    private int zaehler = 0;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -75,14 +72,6 @@ public class CalendarFragment extends Fragment {
         //set initial title
         textViewCalendarDate = fragmentCalendarView.findViewById(R.id.textView_calendar_date);
         textViewCalendarDate.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
-
-        //todo: test
-        testTextView = fragmentCalendarView.findViewById(R.id.eventDeseraliserungsTest);
-        String testString = "test:";
-        for (Event e: Patient.instance().getEventList()             ) {
-            testString += e.toString();
-        }
-        testTextView.setText(testString);
 
         //set title on calendar scroll
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
@@ -136,12 +125,5 @@ public class CalendarFragment extends Fragment {
         compactCalendarView.removeAllEvents();
         //load events
         compactCalendarView.addEvents(Patient.instance().getEventList());
-
-        //todo:test
-        String testString = "test:";
-        for (Event e: Patient.instance().getEventList()             ) {
-            testString += e.toString();
-        }
-        testTextView.setText(testString);
     }
 }

@@ -9,7 +9,6 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -72,7 +71,7 @@ public class Symptom implements JsonSerializer<Symptom>, JsonDeserializer<Sympto
     public Symptom deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
 
-        final String jsonTimestamp = jsonObject.get("timestamp").getAsString();
+        final Calendar calendar = context.deserialize(jsonObject.get("timestamp"), Calendar.class);
         final String jsonSymptom = jsonObject.get("symptom").getAsString();
         final String jsonPeriod = jsonObject.get("period").getAsString();
         //final String jsonNote = jsonObject.get("note").getAsString();
@@ -81,13 +80,6 @@ public class Symptom implements JsonSerializer<Symptom>, JsonDeserializer<Sympto
         final Symptom symptom = new Symptom();
         symptom.setSymptom(jsonSymptom);
         //symptom.setNote(jsonNote);
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z", Locale.GERMAN);
-        try {
-            calendar.setTime(simpleDateFormat.parse(jsonTimestamp));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         symptom.setCalendar(calendar);
         symptom.setPeriod(jsonPeriod);
         return symptom;

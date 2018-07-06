@@ -35,14 +35,4 @@
         android:textColor="@color/colorAccent"
         android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/eventDeseraliserungsTest"
-        android:layout_width="312dp"
-        android:layout_height="74dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/compactcalendar_view"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="-87dp"
-        android:text="Deserialisierungs Test"
-        tools:text="test" />
 </RelativeLayout>

@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,37 +34,29 @@ public class ScreenLogin extends AppCompatActivity {
 
         final Gson gson = gsonBuilder.create();
 
-        //File file = new File("serialize.json");
+        File file = new File("/data/user/0/com.example.anton.ma_ced/files/serialize.json");
 
-        FileInputStream fis = null;
-        try {
-            //if(!file.exists())
-            //    file.createNewFile();//creates file if not exists
-            fis = openFileInput("serialize.json");
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String text;
-            text = br.readLine();
+        if (file.exists()){
+            try(FileInputStream fis = openFileInput("serialize.json");
+                    InputStreamReader isr = new InputStreamReader(fis);
+                        BufferedReader br = new BufferedReader(isr)) {
 
-            Patient patient = gson.fromJson(text, Patient.class);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fis != null) {
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                String text = br.readLine();
+                gson.fromJson(text, Patient.class);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            Intent intent = new Intent(getApplicationContext(), NavigationDrawer.class);
-
-            startActivity(intent);
+        }else {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
+        Intent intent = new Intent(getApplicationContext(), NavigationDrawer.class);
+        startActivity(intent);
     }
 }
