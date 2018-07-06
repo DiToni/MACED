@@ -25,6 +25,7 @@ class PainAdapter extends RecyclerView.Adapter<PainAdapter.View_Holder> {
         this.context = context;
         this.painList = painList;
 
+
     }
 
     @Override
@@ -42,13 +43,15 @@ class PainAdapter extends RecyclerView.Adapter<PainAdapter.View_Holder> {
     @Override
     @SuppressLint("SetTextI18n")
     public void onBindViewHolder(View_Holder holder, int position) {
+            if (!painList.isEmpty()) {
+                String s = painList.get(position).getCalendar().getTime().toString();
+                int s1 = painList.get(position).getScore();
 
-            String s = Patient.instance().getPainList().get(position).getTime();
-            int s1 = Patient.instance().getPainList().get(position).getScore();
 
-            holder.title.setText(s);
-            holder.description.setText(String.valueOf(s1));
-
+                holder.title.setText(s);
+                holder.description.setText(String.valueOf(s1));
+            }
+        System.out.println(position);
             }
 
 
@@ -70,14 +73,14 @@ class PainAdapter extends RecyclerView.Adapter<PainAdapter.View_Holder> {
 
     public class View_Holder extends RecyclerView.ViewHolder {
 
-        CardView cv;
+        //CardView cv;
         TextView title;
         TextView description;
 
 
         View_Holder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.cardView);
+            //cv = (CardView) itemView.findViewById(R.id.cardView);
             title = (TextView) itemView.findViewById(R.id.title);
             description = (TextView) itemView.findViewById(R.id.description);
 

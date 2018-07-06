@@ -21,7 +21,7 @@ class SymptomAdapter extends RecyclerView.Adapter<SymptomAdapter.View_Holder> {
     public SymptomAdapter(List<Symptom> symptomList, Context context)
     {
     this.context = context;
-        this.symptomList = symptomList;
+    this.symptomList = symptomList;
     }
 
     @Override
@@ -38,7 +38,7 @@ class SymptomAdapter extends RecyclerView.Adapter<SymptomAdapter.View_Holder> {
 
     @Override
     public void onBindViewHolder(View_Holder holder, int position) {
-        String s= symptomList.get(position).getTime();
+        String s= symptomList.get(position).getCalendar().getTime().toString();
         String s1 = symptomList.get(position).getSymptom();
             /*String s= "fdsg";
             String s1 = "sfdgd";*/

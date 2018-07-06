@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,12 +24,13 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.View_Holder> {
         this.context = context;
         this.stoolList = stoolList;
 
+
+
     }
 
     @Override
     public View_Holder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.stool_list, parent, false);
         return new View_Holder(itemView);
     }
@@ -41,8 +43,10 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.View_Holder> {
     @Override
     public void onBindViewHolder(View_Holder holder, int position) {
 
-            String s = Patient.instance().getStoolList().get(position).getTime();
-            int s1 = Patient.instance().getStoolList().get(position).getScore();
+            String s = stoolList.get(position).getCalendar().getTime().toString();
+            int s1 = stoolList.get(position).getScore();
+
+
 
             holder.title.setText(s);
             holder.description.setText(String.valueOf(s1));

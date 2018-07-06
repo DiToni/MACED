@@ -20,6 +20,7 @@ public class Symptom implements JsonSerializer<Symptom>, JsonDeserializer<Sympto
     private String period; // in minutes
     //private String note;
 
+
     public String getSymptom() {
         return symptom;
     }
