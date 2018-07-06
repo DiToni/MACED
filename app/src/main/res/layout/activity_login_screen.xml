@@ -41,7 +41,7 @@
         android:background="#fff"
 
         android:onClick="onClickAnmeldeButton"
-        android:text="Button" />
+        android:text="@string/anmelden" />
 
 
 </RelativeLayout>

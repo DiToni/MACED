@@ -123,6 +123,7 @@
     <string name="von">von:</string>
     <string name="bis">bis:</string>
     <string name="exportieren">exportieren</string>
+    <string name="anmelden">anmelden</string>
 
     <string-array name="lokalisationen">
         <item>oben rechts</item>
@@ -160,5 +161,6 @@
         <item>Aphthe</item>
     </string-array>
     <string name="title_activity_toiletfinder2">Map</string>
+
 
 </resources>
